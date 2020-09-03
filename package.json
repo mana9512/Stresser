@@ -1,0 +1,46 @@
+{
+  "name": "stresser-website",
+  "version": "1.0.0",
+  "description": "The main purpose of the project is to provide online stress measurement portal. Our project will isolate and identify aspects of emotional disturbance; for example, to assess the degree of severity of the core symptoms of depression, anxiety or stress.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch ./Stresser-Website/frontend/src/index.js --output ./Stresser-Website/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./Stresser-Website/frontend/src/index.js --output ./Stresser-Website/frontend/static/frontend/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mana9512/Stresser-Website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mana9512/Stresser-Website/issues"
+  },
+  "homepage": "https://github.com/mana9512/Stresser-Website#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "knox": "^0.9.2",
+    "moment": "^2.27.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-moment": "^0.9.7",
+    "react-redux": "^7.2.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-spinners-kit": "^1.9.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.0"
+  }
+}
