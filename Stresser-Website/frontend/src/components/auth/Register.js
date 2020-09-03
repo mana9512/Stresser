@@ -27,10 +27,10 @@ const Register = ({ register, isAuthenticated, createMessage }) => {
     }
   };
 
-  if (isAuthenticated) {
-    console.log("test");
-    return <Redirect to="/login" />;
-  }
+  // if (isAuthenticated) {
+  //   console.log("test");
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <Fragment>

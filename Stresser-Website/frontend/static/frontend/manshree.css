@@ -83,28 +83,14 @@ body {
 	
 }
 
-.premiun-button {
-	background-color: rgba(46,139,87,1);
-	padding: 10px 20px;
-	margin: 0px 20px;
-	display: inline-block;
-	white-space: nowrap;
-	text-align: center;
-	font-family: Poppins;
-	font-style: normal;
-	font-weight: normal;
-	border-radius: 8px;
-	font-size: 18px;
-	color: rgba(255,255,255,1);
-	text-transform: capitalize;
-}
+
 .unevenShape {
 	display: block;
 }
 
 
 
-.landing-box {
+.landingBox {
 	width: 100%;
 	height: auto;
 	padding-top: 50px;
@@ -326,4 +312,129 @@ body {
 	right: 20px;
 	bottom: 5px;
 	z-index: 100;
+}
+
+/* questions' page*/
+.test-intro {
+	text-align: center;
+	margin-top: 100px;
+}
+.test-intro-block {
+	display: inline-block;
+	padding: 20px;
+	height: 200px;
+	width: 250px;
+	margin: 20px;
+	filter: drop-shadow(0px 0px 20px rgba(104, 104, 104, 0.502));
+	border-radius: 8px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.test-intro-block img {
+	width: 80px;
+	height: auto;
+	object-fit: cover;
+}
+.test-intro-block h2 {
+	font-family: Poppins;
+	font-weight: bold;
+	font-size: 15px;
+	color: #2d2d2d;
+	text-align: center;
+	padding-top: 15px;
+	z-index: 11;
+}
+.test-intro-block h4 {
+	font-family: Poppins;
+	font-weight: normal;
+	font-size: 12px;
+	color: #9b9faa;
+	text-align: center;
+	z-index: 11;
+}
+
+/* Question Page */
+.quesBlock {
+	margin-top: 100px;
+	position: relative;
+	width: 100%;
+}
+.quesBlock .row .col-12 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.quesBlock .row .col-4 {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding: 10px;
+}
+.quesBlock h2 {
+	font-size: 20px;
+	font-family: Poppins;
+	font-weight: bold;
+}
+.quesBlock input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+.quesBlock .check {
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	top: 50%;
+	left: 0;
+	border-radius: 50%;
+	transform: translateY(-50%);
+	border: 4px solid #5d5d5d;
+	-webkit-transition: .25s all ease;
+	transition: .25s all ease;
+}
+.quesBlock label {
+	padding: 10px 40px;
+	font-size: 15px;
+	margin-bottom: 0px;
+	font-family: Poppins;
+	font-weight: normal;
+	-webkit-transition: .25s all ease;
+	transition: .25s all ease;
+}
+.quesBlock .col-4:hover label {
+	color: #949494;
+}
+.quesBlock .col-4:hover .check {
+	border-color: #949494;
+}
+
+.quesBlock input[type=radio]:checked ~ label {
+	color: #fff;
+	font-weight: bold;
+	background-color: #2e8b57;
+	border-radius: 20px;
+}
+.quesBlock input[type=radio]:checked ~ .check {
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: none;
+	border-radius: 8px;
+	z-index: -1;
+
+}
+.quesBlock .next-prev {
+	padding-top: 50px;
+}
+.quesBlock .next-prev button {
+	padding: 10px 30px;
+	font-size: 15px;
+	color: #2d2d2d;
+	background: transparent;
+	font-family: Poppins;
+	font-weight: bold;
+	border-radius: 8px;
+	-webkit-transition: .25s all ease;
+	transition: .25s all ease;
+}
+.quesBlock .next-prev button:hover {
+	background-color: #2e8b57;
+	color: #fff;
 }

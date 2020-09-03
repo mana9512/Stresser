@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 const Landing = () => {
     return (
         <Fragment>
-            <div className="landing-box">
+            <div className="landingBox">
                 <div className="landingHeading">"Its so incredible to finally be understood."</div><br />
                 <div className="landingText">
                     Take our Stress Test and get the level of your stress<br />and find out the solutions

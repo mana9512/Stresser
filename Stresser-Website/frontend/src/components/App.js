@@ -6,7 +6,8 @@ import Footer from "./layout/Footer";
 import Register from "./auth/Register";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./auth/Login";
-// import { PongSpinner } from "react-spinners-kit";
+import Question from "./layout/Question";
+
 
 // REDUX Imports
 import store from "../store";
@@ -15,9 +16,9 @@ import Alert from "./layout/Alert";
 import { loadUser } from "../actions/auth";
 
 export class App extends Component {
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
+  // componentDidMount() {
+  //   store.dispatch(loadUser());
+  // }
 
   render() {
     return (
@@ -30,6 +31,8 @@ export class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/question" component={Question} />
+
             </Switch>
             <Footer />
           </Fragment>

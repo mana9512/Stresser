@@ -6,7 +6,7 @@ const Navbar = () => {
 		<Fragment>
 			<div className="headerBar">
 				<div className="row">
-					<div className="logo col-2">Strezzer</div>
+					<div className="logo col-2">Stresser</div>
 					<div className="col-8" style={{ textAlign: "center" }}>
 						<div className="menu">
 							<div className="navMenuItem float">Appointment Booking</div>
@@ -20,6 +20,8 @@ const Navbar = () => {
 
 					<div className="col-2" style={{ textAlign: "right" }}>
 						<div className="navMenuItem">Log in</div>
+						<div className="navMenuItem">Register</div>
+
 					</div>
 				</div>
 			</div>
