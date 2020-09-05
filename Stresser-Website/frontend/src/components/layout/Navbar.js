@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -19,8 +20,12 @@ const Navbar = () => {
 					</div>
 
 					<div className="col-2" style={{ textAlign: "right" }}>
-						<div className="navMenuItem">Log in</div>
-						<div className="navMenuItem">Register</div>
+						<Link to="/login"  className="navMenuItem">
+                			Login
+              			</Link>
+						<Link to="/register" className="navMenuItem">
+                			Register
+              			</Link>
 
 					</div>
 				</div>
