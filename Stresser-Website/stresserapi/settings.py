@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'account',
+    'channels',
+    'chat'
     
 ]
 
@@ -73,6 +75,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'stresserapi.wsgi.application'
+ASGI_APPLICATION = 'stresserapi.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -81,7 +93,7 @@ WSGI_APPLICATION = 'stresserapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'strezzer',
+        'NAME': 'stress',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

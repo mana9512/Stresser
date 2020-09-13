@@ -50,7 +50,7 @@ const Login = ({ login, isAuthenticated }) => {
                 autoComplete="off"
               >
                 <div className="form-group">
-                  <label for="email">
+                  <label for="username">
                     <i className="fas fa-envelope"></i>
                   </label>
                   <input
@@ -58,7 +58,7 @@ const Login = ({ login, isAuthenticated }) => {
                     name="username"
                     id="username"
                     value={username}
-                    placeholder="Your Email"
+                    placeholder="Your Username"
                     onChange={(e) => onChange(e)}
                   />
                 </div>

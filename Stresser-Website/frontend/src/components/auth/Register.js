@@ -27,13 +27,19 @@ const Register = ({ register, isAuthenticated, createMessage }) => {
     }
   };
 
-  // if (isAuthenticated) {
-  //   console.log("test");
-  //   return <Redirect to="/login" />;
-  // }
+  if (isAuthenticated) {
+    console.log("test");
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Fragment>
+      <br/>
+      <br/>
+<br/>
+      <br/>
+
+      <br/>
       <section className="signup">
         <div className="container">
           <div className="signup-content">
@@ -123,6 +129,13 @@ const Register = ({ register, isAuthenticated, createMessage }) => {
           </div>
         </div>
       </section>
+      <br/>
+      <br/>
+
+      <br/>
+
+      <br/>
+
     </Fragment>
   );
 };
