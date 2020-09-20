@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'account',
-    'channels',
-    'chat'
+    'das'
     
 ]
 
@@ -74,17 +73,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'stresserapi.wsgi.application'
-ASGI_APPLICATION = 'stresserapi.routing.application'
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
 
 
 # Database
@@ -144,3 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static')
+
+# ]
