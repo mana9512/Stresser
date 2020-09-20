@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'account',
-    'das'
+    'das',
+    'appointmentbooking'
     
 ]
 

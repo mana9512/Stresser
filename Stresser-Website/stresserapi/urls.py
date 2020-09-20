@@ -21,7 +21,6 @@ urlpatterns = [
     path('',include('frontend.urls')),
     path('', include('account.urls')),
     path('', include('das.urls')),
-
-
+    path('', include('appointmentbooking.urls')),
 
 ]
