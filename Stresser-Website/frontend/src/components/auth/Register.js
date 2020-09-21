@@ -2,10 +2,12 @@ import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
+
 import { createMessage } from "../../actions/messages";
 import PropTypes from "prop-types";
 
-const Register = ({ register, isAuthenticated, createMessage }) => {
+const Register = ({ register, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -21,8 +23,8 @@ const Register = ({ register, isAuthenticated, createMessage }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      createMessage({ passwordNotMatch: "Passwords do not match" });
-    } else {
+      setAlert("Password dont match", "danger");
+    }  else {
       return register(username, password, email);
     }
   };
@@ -143,6 +145,8 @@ const Register = ({ register, isAuthenticated, createMessage }) => {
 Register.propTypes = {
   createMessage: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+
   isAuthenticated: PropTypes.bool,
 };
 
@@ -150,4 +154,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { register, createMessage })(Register);
+export default connect(mapStateToProps, { register, createMessage, setAlert })(Register);

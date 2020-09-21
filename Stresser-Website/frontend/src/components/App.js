@@ -26,7 +26,7 @@ export class App extends Component {
         <Router>
           <Fragment>
             <Navbar />
-            {/* <Alert/> */}
+            <Alert/>
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
