@@ -10,12 +10,14 @@ import PropTypes from "prop-types";
 const Register = ({ register, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     username: "",
+    first_name:"",
+    last_name:"",
     email: "",
     password: "",
     password2: "",
   });
 
-  const { username, email, password, password2 } = formData;
+  const { username, email,first_name,last_name, password, password2 } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +27,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
     if (password !== password2) {
       setAlert("Password dont match", "danger");
     }  else {
-      return register(username, password, email);
+      return register(username, password, email,first_name,last_name);
     }
   };
 
@@ -36,11 +38,6 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
 
   return (
     <Fragment>
-      <br/>
-      <br/>
-<br/>
-      <br/>
-
       <br/>
       <section className="signup">
         <div className="container">
@@ -55,7 +52,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                 autoComplete="off"
               >
                 <div className="form-group">
-                  <label for="re-pass">
+                  <label for="username">
                     <i className="fas fa-user-friends"></i>
                   </label>
                   <input
@@ -64,6 +61,32 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     id="username"
                     value={username}
                     placeholder="Username"
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label for="first_name">
+                    <i className="fas fa-user-friends"></i>
+                  </label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    value={first_name}
+                    placeholder="First Name"
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label for="last_name">
+                    <i className="fas fa-user-friends"></i>
+                  </label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                    value={last_name}
+                    placeholder="Last Name"
                     onChange={(e) => onChange(e)}
                   />
                 </div>
@@ -131,12 +154,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
           </div>
         </div>
       </section>
-      <br/>
-      <br/>
-
-      <br/>
-
-      <br/>
+    
 
     </Fragment>
   );

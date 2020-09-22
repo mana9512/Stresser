@@ -1,40 +1,53 @@
-import React, { Fragment } from 'react';
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { logout } from "../../actions/auth";
+import PropTypes from "prop-types";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
+const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
+  return (
+    <Fragment>
+      <div className="headerBar">
+        <div className="row">
+          <div className="logo col-2">Stresser</div>
+          <div className="col-8" style={{ textAlign: "center" }}>
+            <div className="menu">
+              <Link to="/bookappointment" className="navMenuItem float">
+                Appointment Booking
+              </Link>
+              <div className="navMenuItem float">Chat</div>
+              <div className="navMenuItem float">Article & Surveys</div>
+              <div className="navMenuItem float">About</div>
+            </div>
+          </div>
+		  
+          <div className="col-2" style={{ textAlign: "right" }}>
+            <Link to="/login" className="navMenuItem">
+              Login
+            </Link>
+			 
+            <a className="navMenuItem float" onClick={logout} href="#!">
+              Logout
+            </a>
+            <Link to="/register" className="navMenuItem">
+              Register
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
 
-const Navbar = () => {
-	return (
-		<Fragment>
-			<div className="headerBar">
-				<div className="row">
-					<div className="logo col-2">Stresser</div>
-					<div className="col-8" style={{ textAlign: "center" }}>
-						<div className="menu">
-							<div className="navMenuItem float">Appointment Booking</div>
-							<div className="navMenuItem float">Chat</div>
-							<div className="navMenuItem float">Article & Surveys</div>
-							<div className="navMenuItem float">About</div>
-							
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 
-						</div>
-					</div>
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
-					<div className="col-2" style={{ textAlign: "right" }}>
-						<Link to="/login"  className="navMenuItem">
-                			Login
-              			</Link>
-						<Link to="/register" className="navMenuItem">
-                			Register
-              			</Link>
+export default connect(mapStateToProps, { logout })(Navbar);
 
-					</div>
-				</div>
-			</div>
-		</Fragment>
-	)
-}
-
-export default Navbar
-
-
-
+// export default Navbar;

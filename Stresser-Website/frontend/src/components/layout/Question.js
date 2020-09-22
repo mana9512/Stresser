@@ -1,4 +1,3 @@
-import React, { Fragment } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
@@ -7,28 +6,34 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
+import React, { Fragment, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { savescore } from "../../actions/das";
+import PropTypes from "prop-types";
+
 const tutorialSteps = [
     ["I found it hard to wind down.", "s", 0],
     ["I was aware of dryness of my mouth", "a", 0],
-    ["I couldn’t seem to experience any positive feeling at all", "d", undefined],
-    ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", undefined],
-    ["I found it difficult to work up the initiative to do things", "d", undefined],
-    ["I tended to over-react to situations", "s", undefined],
-    ["I experienced trembling (e.g. in the hands)", "a", undefined],
-    ["I felt that I was using a lot of nervous energy", "s", undefined],
-    ["I was worried about situations in which I might panic and make a fool of myself", "a", undefined],
-    ["I felt that I had nothing to look forward to", "d", undefined],
-    ["I found myself getting agitated", "s", undefined],
-    ["I found it difficult to relax", "s", undefined],
-    ["I felt down-hearted and blue", "d", undefined],
-    ["I was intolerant of anything that kept me from getting on with what I was doing", "s", undefined],
-    ["I felt I was close to panic", "d", undefined],
-    ["I was unable to become enthusiastic about anything", "d", , undefined],
-    ["I felt I wasn’t worth much as a person", "d", undefined],
-    ["I felt that I was rather touchy ", "s", undefined],
-    ["I was aware of the action of my heart in the absence of physical exertion (e.g. sense of heart rate increase, heart missing a beat)", "a", undefined],
-    ["I felt scared without any good reason", "a", undefined],
-    ["I felt that life was meaningless", "d", undefined]
+    ["I couldn’t seem to experience any positive feeling at all", "d", 0],
+    // ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", undefined],
+    // ["I found it difficult to work up the initiative to do things", "d", undefined],
+    // ["I tended to over-react to situations", "s", undefined],
+    // ["I experienced trembling (e.g. in the hands)", "a", undefined],
+    // ["I felt that I was using a lot of nervous energy", "s", undefined],
+    // ["I was worried about situations in which I might panic and make a fool of myself", "a", undefined],
+    // ["I felt that I had nothing to look forward to", "d", undefined],
+    // ["I found myself getting agitated", "s", undefined],
+    // ["I found it difficult to relax", "s", undefined],
+    // ["I felt down-hearted and blue", "d", undefined],
+    // ["I was intolerant of anything that kept me from getting on with what I was doing", "s", undefined],
+    // ["I felt I was close to panic", "d", undefined],
+    // ["I was unable to become enthusiastic about anything", "d", , undefined],
+    // ["I felt I wasn’t worth much as a person", "d", undefined],
+    // ["I felt that I was rather touchy ", "s", undefined],
+    // ["I was aware of the action of my heart in the absence of physical exertion (e.g. sense of heart rate increase, heart missing a beat)", "a", undefined],
+    // ["I felt scared without any good reason", "a", undefined],
+    // ["I felt that life was meaningless", "d", undefined]
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TextMobileStepper() {
+const Question=({savescore,isAuthenticated,user})=>  {
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -65,6 +70,23 @@ export default function TextMobileStepper() {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+    const userScores = {
+        d: 0,
+        a: 0,
+        s: 0,
+    }
+
+    const onChange = (index, value, e) => {
+        userScores[tutorialSteps[index][1]] += value - tutorialSteps[index][2];
+        tutorialSteps[index][2] = value
+
+    }
+    const Submit = () => {
+        console.log('hy');
+        return savescore(user.id,userScores['d'],userScores['a'],userScores['s']);
+      };
+
+    
 
     return (
         <Fragment>
@@ -109,77 +131,87 @@ export default function TextMobileStepper() {
                 <Paper square elevation={0} className={classes.header}>
                     <div className="quesBlock" style={{ width: "100%", marginLeft: "450px"}}>
                         <div className="row" style={{ width: "900px", margin: "auto", marginLeft: "250px", marginBottom: "20px"}}>
-                        <div key={activeStep}>
-                            <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
-                            <div className="col-7">
-                                <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} onChange={(e) => onChange(activeStep, 0, e)} />
-                                <label htmlFor={activeStep + "_0"}>NEVER</label>
-                                <div className="check"></div>
-                            </div>
-                            <br />
-                            <br />
-                            <div className="col-7">
-                                <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} onChange={(e) => onChange(activeStep, 1, e)} />
-                                <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
-                                <div className="check"></div>
-                            </div>
-                            <br />
-                            <br />
+                                <div key={activeStep}>
+                                    <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
+                                    <div className="col-7">
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} onChange={(e) => onChange(activeStep, 0, e)} />
+                                        <label htmlFor={activeStep + "_0"}>NEVER</label>
+                                        <div className="check"></div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div className="col-7">
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} onChange={(e) => onChange(activeStep, 1, e)} />
+                                        <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
+                                        <div className="check"></div>
+                                    </div>
+                                    <br />
+                                    <br />
 
-                            <div className="col-7">
-                                <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} onChange={(e) => onChange(activeStep, 2, e)} />
-                                <label htmlFor={activeStep + "_2"}>OFTEN</label>
-                                <div className="check"></div>
-                            </div>
-                            <br />
-                            <br />
+                                    <div className="col-7">
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} onChange={(e) => onChange(activeStep, 2, e)} />
+                                        <label htmlFor={activeStep + "_2"}>OFTEN</label>
+                                        <div className="check"></div>
+                                    </div>
+                                    <br />
+                                    <br />
 
-                            <div className="col-7">
-                                <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} onChange={(e) => onChange(activeStep, 3, e)} />
-                                <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
-                                <div className="check"></div>
+                                    <div className="col-7">
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} onChange={(e) => onChange(activeStep, 3, e)} />
+                                        <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
+                                        <div className="check"></div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                </div>
                             </div>
-                            <br />
-                            <br />
                         </div>
-                    </div>
-                    </div>
+                    
                 </Paper>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <div className="row" style={{ width: "100%", margin: "auto", marginLeft: "730px", marginBottom: "20px"}}>
 
-
                 <MobileStepper
-                style={{ width: "100%"}}
-      variant="progress"
-      steps={maxSteps}
-      position="static"
-      activeStep={activeStep}
-      className={classes.root}
-      nextButton={
-        <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-          Next
-          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-        </Button>
-      }
-      backButton={
-        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-          Back
-        </Button>
-      }
-    />
+                style={{ width: "100%"}} variant="progress" steps={maxSteps} position="static" activeStep={activeStep} className={classes.root}
+                 nextButton={
+                <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>Next{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </Button>
+                }
+                    backButton={
+                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                        Back
+                        </Button>
+                    }
+                    />
                 </div>
+                <div className="next-prev" style={{width: "20%"}}>
+			
+                    <div className="col-6" >
+                        <button className="button3" onClick={Submit} style={{marginLeft: "1065px",fontSize:"16px"}} disabled={activeStep !== maxSteps - 1}>Finish</button>
+                    </div>
+                </div>
+                
+
             </div>
         </Fragment>
 
     );
 }
+Question.propTypes = {
+    savescore: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+  };
+  
+  const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    user:state.auth.user
+  });
+  
+  export default connect(mapStateToProps, { savescore })(Question);

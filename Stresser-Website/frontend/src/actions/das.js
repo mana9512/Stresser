@@ -7,7 +7,7 @@ import {
 } from './types';
 
 //SAVE GENERATED SCORE
-export const savescore = (id, dscore, ascore, sscore) => (dispatch) => {
+export const savescore = (user_id, Dscore, Ascore, Sscore) => (dispatch) => {
     // Headers
     const config = {
       headers: {
@@ -16,10 +16,10 @@ export const savescore = (id, dscore, ascore, sscore) => (dispatch) => {
     };
   
     // Request Body
-    const body = JSON.stringify({ id, dscore, ascore, sscore });
+    const body = JSON.stringify({user_id, Dscore, Ascore, Sscore});
     console.log(body);
     axios
-      .post('/api/dasscore', body, config)
+      .put('/api/dasscore/', body, config)
       .then((res) => {
         dispatch({
           type: SCORE_SUCCESS,
@@ -27,6 +27,7 @@ export const savescore = (id, dscore, ascore, sscore) => (dispatch) => {
         });
       })
       .catch((err) => {
+        console.log(err);
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
           type: SCORE_FAIL,

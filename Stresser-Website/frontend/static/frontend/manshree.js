@@ -2702,3 +2702,4 @@
 // }
 
 // window.application = new Application();
+// $('.doctor-list').niceSelect();

@@ -22,9 +22,9 @@ class Booking(models.Model):
         primary_key=True,
     )
     user_id = models.IntegerField()
-    user_name = models.CharField(max_length=100)
+    user_firstname = models.CharField(max_length=100)
+    user_lastname = models.CharField(max_length=100)
     user_email = models.EmailField(max_length=100)
-    user_contact = models.CharField(max_length=13)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
