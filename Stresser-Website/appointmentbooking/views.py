@@ -12,6 +12,8 @@ from datetime import datetime
 # Lead Viewset
 
 class TimeSlotViewSet(APIView):
+    # permission_classes=[permissions.IsAuthenticatedOrReadOnly]
+
     def get(self, request):
         bookedobj=TimeSlot.objects.all()
         bookedobjserialize=TimeSlotSerializer(bookedobj,many=True)
@@ -28,16 +30,23 @@ class TimeSlotViewSet(APIView):
             if delta.days >14:
                 return Response({"Can't book prior to more than 14 days."})
             elif delta.days < 0:
-                return Response({"Abe gand ke andhe date chek kr na."})
+                return Response({"Invalid Date Selection"})
 
-            if checkavailability.validated_data.get('availability',None):
+            created = TimeSlot.objects.filter(slot=request.data['slot'],date=request.data['date'],specialist=request.data['specialist']).exists()
+           
+
+            if not created:
                 newobj=TimeSlotSerializer(data={ 'slot':request.data['slot'],'date':request.data['date'],'specialist':request.data['specialist'],'availability':False })
                 if newobj.is_valid():
+                    print("Here1")
                     newobj.save()
+                    BookingViewSet.post(self,request,newobj.data['id'])
+                    print("Booking called")
                     return Response(newobj.data,status=status.HTTP_201_CREATED)
                 else:
                     return Response(newobj.errors,status=status.HTTP_400_BAD_REQUEST)
             else:
+                print("Here2")
                 return Response({"Slot not Available"})
         return Response(checkavailability.errors,status=status.HTTP_400_BAD_REQUEST)
 
@@ -47,8 +56,12 @@ class BookingViewSet(APIView):
         bookedobjserialize=BookingSerializer(bookedobj,many=True)
         return Response(bookedobjserialize.data)
 
-    def post(self, request):
-        bookedobjserialize=BookingSerializer(data=request.data)
+    def post(self, request, id):
+        print(request.data)
+        print(datetime.now())
+        print(request.data['user'])
+        print(id)
+        bookedobjserialize=BookingSerializer(data={'user':request.data['user'], 'timestamp':datetime.now(), 'timeslot':id})
         if bookedobjserialize.is_valid():
             bookedobjserialize.save()
             return Response(bookedobjserialize.data,status=status.HTTP_201_CREATED)
@@ -66,10 +79,5 @@ class SpecialistViewSet(APIView):
             specialistobjserialize.save()
             return Response(specialistobjserialize.data,status=status.HTTP_201_CREATED)
         return Response(specialistobjserialize.errors,status=status.HTTP_400_BAD_REQUEST)
-
-    
-
-
-
 
     

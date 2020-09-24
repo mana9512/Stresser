@@ -4,6 +4,7 @@ import messages from './messages';
 import auth from './auth';
 import alert from './alert';
 import das from './das'
+import appointment from './appointment'
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   messages,
   auth,
   alert,
-  das
+  das,
+  appointment
 });
