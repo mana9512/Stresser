@@ -78,15 +78,15 @@ const Question=({savescore,isAuthenticated,user})=>  {
 
     const onChange = (index, value, e) => {
         userScores[tutorialSteps[index][1]] += value - tutorialSteps[index][2];
-        tutorialSteps[index][2] = value
-
+        tutorialSteps[index][2] = value;
     }
-    const Submit = () => {
-        console.log('hy');
-        return savescore(user.id,userScores['d'],userScores['a'],userScores['s']);
-      };
 
-    
+    const Submit = () => {
+        savescore(user['id'],userScores['d'],userScores['a'],userScores['s']);
+        <Redirect to="/scoredisplay" />;
+        
+
+    };
 
     return (
         <Fragment>
@@ -134,14 +134,14 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                 <div key={activeStep}>
                                     <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} onChange={(e) => onChange(activeStep, 0, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} checked={tutorialSteps[activeStep][2] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
                                         <label htmlFor={activeStep + "_0"}>NEVER</label>
                                         <div className="check"></div>
                                     </div>
                                     <br />
                                     <br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} onChange={(e) => onChange(activeStep, 1, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} checked={tutorialSteps[activeStep][2] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
                                         <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
                                         <div className="check"></div>
                                     </div>
@@ -149,7 +149,7 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} onChange={(e) => onChange(activeStep, 2, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} checked={tutorialSteps[activeStep][2] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
                                         <label htmlFor={activeStep + "_2"}>OFTEN</label>
                                         <div className="check"></div>
                                     </div>
@@ -157,7 +157,7 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} onChange={(e) => onChange(activeStep, 3, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} checked={tutorialSteps[activeStep][2] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
                                         <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
                                         <div className="check"></div>
                                     </div>
@@ -194,7 +194,7 @@ const Question=({savescore,isAuthenticated,user})=>  {
                 <div className="next-prev" style={{width: "20%"}}>
 			
                     <div className="col-6" >
-                        <button className="button3" onClick={Submit} style={{marginLeft: "1065px",fontSize:"16px"}} disabled={activeStep !== maxSteps - 1}>Finish</button>
+                        <button className="appo-button" onClick={Submit} style={{marginLeft: "1065px",fontSize:"16px"}} disabled={activeStep !== maxSteps - 1}>Finish</button>
                     </div>
                 </div>
                 

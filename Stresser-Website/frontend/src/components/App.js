@@ -9,6 +9,8 @@ import Login from "./auth/Login";
 import Question from "./layout/Question";
 import Appointment from "./layout/Appointment";
 import ScoreDisplay from "./layout/ScoreDisplay";
+import Personality from "./layout/Personality";
+
 
 
 
@@ -38,6 +40,8 @@ export class App extends Component {
               <Route exact path="/question" component={Question} />
               <Route exact path="/bookappointment" component={Appointment} />
               <Route exact path="/scoredisplay" component={ScoreDisplay} />
+              <Route exact path="/checkpersonalitytype" component={Personality} />
+
 
             </Switch>
             <Footer />

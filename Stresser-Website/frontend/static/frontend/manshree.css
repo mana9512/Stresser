@@ -285,7 +285,7 @@ body {
 
 .footerBar {
 	width: 100%;
-	margin-top: 80px;
+	margin-top: 0px;
 	text-align: center;
 	background-color: rgba(46,139,87,1);
 }

@@ -21,7 +21,7 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
     if(!isAuthenticated){
         setAlert("You need to autheticate prior to book an appointment","danger")
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-09-26T21:11:54'));
     
     const handleDateChange = (date) => {
       setSelectedDate(date);
@@ -49,7 +49,7 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
     
       const onSubmit = (e) => {
         e.preventDefault();
-        console.log(`'${slot}'`);
+    //     console.log(slot);
        checkavailability(user['id'], slot, appointmentDate, doctor)
       };
     return (
@@ -214,8 +214,8 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
                                     </div>
                                     <div className="col-lg-2 col-md-6">
                                         <button className="slot-times" name="slot" data-value="6:30 PM" value={"06:30:01"} onClick={(e) => onChange(e)}>
-                                            6:30 PM
-                                                </button>
+                                        6:30 PM
+                                        </button>
                                     </div>
                                 </div>
                             </div>
