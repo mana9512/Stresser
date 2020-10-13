@@ -16,7 +16,7 @@ const tutorialSteps = [
     ["I found it hard to wind down.", "s", 0],
     ["I was aware of dryness of my mouth", "a", 0],
     ["I couldn’t seem to experience any positive feeling at all", "d", 0],
-    // ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", undefined],
+    ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", 0],
     // ["I found it difficult to work up the initiative to do things", "d", undefined],
     // ["I tended to over-react to situations", "s", undefined],
     // ["I experienced trembling (e.g. in the hands)", "a", undefined],
@@ -77,8 +77,12 @@ const Question=({savescore,isAuthenticated,user})=>  {
     }
 
     const onChange = (index, value, e) => {
-        userScores[tutorialSteps[index][1]] += value - tutorialSteps[index][2];
         tutorialSteps[index][2] = value;
+        for (let i = 0; i < tutorialSteps.length; i++) {
+            userScores[tutorialSteps[i][1]] += tutorialSteps[i][2];    
+        }
+        // userScores[tutorialSteps[index][1]] += value - tutorialSteps[index][2];
+        console.log(userScores)
     }
 
     const Submit = () => {

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'knox',
     'account',
     'das',
-    'appointmentbooking'
+    'appointmentbooking',
+    'personalitypred'
     
 ]
 
@@ -92,7 +93,11 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+    )
 }
 
 
@@ -133,7 +138,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR,'static')
-
-# ]
