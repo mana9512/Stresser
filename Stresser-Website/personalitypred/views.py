@@ -35,7 +35,7 @@ class StatusView(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def score(request):
-        mdl=joblib.load("D:/personality/personality/personalitypickle.pkl")
+        mdl=joblib.load("C:/Users/manas/OneDrive/Desktop/knoxsdp/StresserWeb2.0/Stresser-Website/personalitypickle.pkl")
         mydata=request.data
         scoreobjserialize=statusSerializers(data=request.data)
         if scoreobjserialize.is_valid():

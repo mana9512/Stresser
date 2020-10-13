@@ -22,5 +22,7 @@ urlpatterns = [
     path('', include('account.urls')),
     path('', include('das.urls')),
     path('', include('appointmentbooking.urls')),
+    path('', include('personalitypred.urls')),
+
 
 ]

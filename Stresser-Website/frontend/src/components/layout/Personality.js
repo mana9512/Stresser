@@ -146,6 +146,12 @@ export default function PaginationControlled() {
       }
       userScores["EST"] += 38;
     }
+    userScores["EXT"]=((userScores["EXT"]*(8 -1))/ 40) + 1;
+    userScores["OPN"]=((userScores["OPN"]*(8 -1))/ 40) + 1;
+    userScores["AGR"]=((userScores["AGR"]*(8 -1))/ 40) + 1;
+    userScores["CSN"]=((userScores["CSN"]*(8 -1))/ 40) + 1;
+    userScores["EST"]=((userScores["EST"]*(8 -1))/ 40) + 1;
+
     console.log(userScores);
   };
 
@@ -161,7 +167,7 @@ export default function PaginationControlled() {
               <div key={i}>
                 <div className="col-12">
                   <h2>
-                    Question {i + 1} . {val[0]}
+                    Question {i + 1 +10*(page-1)} . {val[0]}
                   </h2>
                 </div>
                 <br />
@@ -183,6 +189,20 @@ export default function PaginationControlled() {
                   <input
                     type="radio"
                     name={"option" + i}
+                    id={i + "_0"}
+                    value="1"
+                    checked
+                    onChange={(e) => onChange(page - 1, i, 2, e)}
+                  />
+                  <label htmlFor={i + "_0"}>SLIGHTLY DISAGREE</label>
+                  <div className="check"></div>
+                </div>
+                <br />
+                <br />
+                <div className="col-7">
+                  <input
+                    type="radio"
+                    name={"option" + i}
                     id={i + "_1"}
                     value="3"
                     onChange={(e) => onChange(page - 1, i, 3, e)}
@@ -192,7 +212,20 @@ export default function PaginationControlled() {
                 </div>
                 <br />
                 <br />
-
+                <div className="col-7">
+                  <input
+                    type="radio"
+                    name={"option" + i}
+                    id={i + "_0"}
+                    value="1"
+                    checked
+                    onChange={(e) => onChange(page - 1, i, 4, e)}
+                  />
+                  <label htmlFor={i + "_0"}>SLIGHTLY AGREE</label>
+                  <div className="check"></div>
+                </div>
+                <br />
+                <br />
                 <div className="col-7">
                   <input
                     type="radio"

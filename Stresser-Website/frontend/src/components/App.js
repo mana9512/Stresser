@@ -8,6 +8,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Question from "./layout/Question";
 import Appointment from "./layout/Appointment";
+import AppointmentSuccess from "./layout/AppointmentSuccess";
 import ScoreDisplay from "./layout/ScoreDisplay";
 import Personality from "./layout/Personality";
 
@@ -41,6 +42,8 @@ export class App extends Component {
               <Route exact path="/bookappointment" component={Appointment} />
               <Route exact path="/scoredisplay" component={ScoreDisplay} />
               <Route exact path="/checkpersonalitytype" component={Personality} />
+              <Route exact path="/bookedsuccess" component={AppointmentSuccess} />
+
 
 
             </Switch>
