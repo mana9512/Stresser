@@ -11,6 +11,7 @@ import Appointment from "./layout/Appointment";
 import AppointmentSuccess from "./layout/AppointmentSuccess";
 import ScoreDisplay from "./layout/ScoreDisplay";
 import Personality from "./layout/Personality";
+import PredictedPersonality from "./layout/PredictedPersonality";
 
 
 
@@ -35,15 +36,16 @@ export class App extends Component {
             <Navbar />
             <Alert/>
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/question" component={Question} />
-              <Route exact path="/bookappointment" component={Appointment} />
+            <Route exact path="/predictedpersonality" component={PredictedPersonality} /><Route exact path="/bookappointment" component={Appointment} />
               <Route exact path="/scoredisplay" component={ScoreDisplay} />
               <Route exact path="/checkpersonalitytype" component={Personality} />
               <Route exact path="/bookedsuccess" component={AppointmentSuccess} />
-
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/question" component={Question} />
+              <Route exact path="/" component={Landing} />
+              
+              
 
 
             </Switch>

@@ -9,26 +9,23 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
     <Fragment>
       <div className="headerBar">
         <div className="row">
-          <div className="logo col-2">Stresser</div>
+        <Link to="/"className="logo col-2">Stresser</Link>
           <div className="col-8" style={{ textAlign: "center" }}>
             <div className="menu">
-              <Link to="/bookappointment" className="navMenuItem float">
-                Appointment Booking
-              </Link>
+              <Link to="/bookappointment" className="navMenuItem float">Appointment Booking</Link>
               <div className="navMenuItem float">Chat</div>
-              <div className="navMenuItem float">Article & Surveys</div>
+              <Link to="/checkpersonalitytype" className="navMenuItem float">Personality Types</Link>
               <div className="navMenuItem float">About</div>
             </div>
           </div>
 		  
           <div className="col-2" style={{ textAlign: "right" }}>
-            <Link to="/login" className="navMenuItem">
+            
+			  {isAuthenticated?<Link to="/" className="navMenuItem float" onClick={logout}>Logout</Link>:<Link to="/login" className="navMenuItem">
               Login
-            </Link>
-			 
-            <a className="navMenuItem float" onClick={logout} href="#!">
-              Logout
-            </a>
+  </Link>} 
+       
+           
             <Link to="/register" className="navMenuItem">
               Register
             </Link>

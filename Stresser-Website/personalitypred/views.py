@@ -61,7 +61,7 @@ def score(request):
         # print(y_pred[0])
         # print(type(json.dumps(y_pred[0])))
 
-        x = {'ypred' : y_pred[0]}
+        x = {'ypred' : y_pred[0],'user':request.user}
 
         predictionobjserialize=predictionSerializers(data=x)
         if predictionobjserialize.is_valid():

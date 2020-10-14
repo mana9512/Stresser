@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link, Redirect } from "react-router-dom";
 
 const Landing = () => {
     return (
@@ -9,10 +10,10 @@ const Landing = () => {
                     Take our Stress Test and get the level of your stress<br />and find out the solutions
 		        </div><br />
                 
-                <button className="testButton">
+                <Link className="testButton" to="/question">
                     Take the Test<img src={"/static/frontend/img/right-arrow.png"} />
 
-                </button>
+                </Link>
                 
                 <svg className="unevenShape" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 319">
                     <path fill="#fff" fillOpacity="1" d="M0,256L48,229.3C96,203,192,149,288,144C384,139,480,181,576,213.3C672,245,768,267,864,256C960,245,1056,203,1152,186.7C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>

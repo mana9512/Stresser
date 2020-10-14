@@ -17,11 +17,11 @@ import { setAlert } from "../../actions/alert";
 
 var appointmentDate="";
 
-const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
+const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}) => {
     if(!isAuthenticated){
         setAlert("You need to autheticate prior to book an appointment","danger")
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-09-26T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-10-14T21:11:54'));
     
     const handleDateChange = (date) => {
       setSelectedDate(date);
@@ -44,14 +44,22 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
     
       const { doctor, slot } = formData;
     
-      const onChange = (e) =>
+      const onChange = (e) =>{
+        
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        console.log(slot);
+        }
+        
     
       const onSubmit = (e) => {
         e.preventDefault();
-    //     console.log(slot);
-       checkavailability(user['id'], slot, appointmentDate, doctor)
+        return checkavailability(user['id'], slot, appointmentDate, doctor)
       };
+      if(booked){
+        return <Redirect to="/bookedsuccess" />;
+      }
+     
+
     return (
         <Fragment>
             <form method="POST"  onSubmit={(e) => onSubmit(e)}>
@@ -69,7 +77,7 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
                         <div className="col-6" style={{ textAlign: "right" }}>
                             <div className="menu">
                                 {/* <button className="appo-button">Appoinments</button> */}
-                                <input type="submit" value="Book Now" className="appo-button"/>
+                                <button type="submit" value="Book Now" className="appo-button">Book Now</button>
                                                             
                                                             
                             </div>
@@ -114,49 +122,49 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
                                         <h5>9:00 AM to 12:00 AM</h5>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="9:00 AM" onClick={(e) => onChange(e)} value={"09:00:01"}>9:00 AM</button>
+                                        <button className="slot-times" type="button" name="slot" data-value="9:00 AM" onClick={(e) => onChange(e)} value={"09:00:01"}>9:00 AM</button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot"  onClick={(e) => onChange(e)}data-value="9:10 AM" value={"09:10:01"}>
+                                        <button className="slot-times" type="button" name="slot"  onClick={(e) => onChange(e)} data-value="9:10 AM" value={"09:10:01"}>
                                             9:10 AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="9:20 AM" value={"09:20:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="9:20 AM" value={"09:20:01"}>
                                             9:20 AM
                                                 </button>
                                     </div>
-                                    <div className="col-lg-2 col-md-6" name="slot" onClick={(e) => onChange(e)} data-value="9:30 AM" value={"09:30:01"}>
-                                        <button className="slot-times">
+                                    <div className="col-lg-2 col-md-6">
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="9:30 AM" value={"09:30:01"}>
                                             9:30 AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="9:40 AM" value={"09:40:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="9:40 AM" value={"09:40:01"}>
                                             9:40 AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="9:50 AM" value={"09:50:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="9:50 AM" value={"09:50:01"}>
                                             9:50 AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="10:00 AM" value={"10:00:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="10:00 AM" value={"10:00:01"}>
                                             10:00AM</button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="10:10 AM" value={"10:10:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="10:10 AM" value={"10:10:01"}>
                                             10:10AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="10:20 AM" value={"10:20:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="10:20 AM" value={"10:20:01"}>
                                             10:20AM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times"name="slot"  onClick={(e) => onChange(e)} data-value="10:30 AM" value={"10:30:01"}>
+                                        <button className="slot-times" type="button" name="slot"  onClick={(e) => onChange(e)} data-value="10:30 AM" value={"10:30:01"}>
                                             10:30AM
                                                 </button>
                                     </div>
@@ -168,52 +176,52 @@ const Appointment = ({checkavailability, isAuthenticated, user, setAlert}) => {
                                         <h5>5:00 PM to 9:00 PM</h5>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="5:00 PM" value={"05:00:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="5:00 PM" value={"05:00:01"}>
                                             5:00 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="5:10 PM" value={"05:10:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="5:10 PM" value={"05:10:01"}>
                                             5:10 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" onClick={(e) => onChange(e)} data-value="5:20 PM" value={"05:20:01"}>
+                                        <button className="slot-times" type="button" name="slot" onClick={(e) => onChange(e)} data-value="5:20 PM" value={"05:20:01"}>
                                             5:20 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6" >
-                                        <button className="slot-times" name="slot" data-value="5:30 PM" value={"05:30:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="5:30 PM" value={"05:30:01"} onClick={(e) => onChange(e)}>
                                             5:30 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="5:40 PM" value={"05:40:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="5:40 PM" value={"05:40:01"} onClick={(e) => onChange(e)}>
                                             5:40 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="5:50 PM" value={"05:50:01"} onClick={(e) => onChange(e)} >
+                                        <button className="slot-times" type="button" name="slot" data-value="5:50 PM" value={"05:50:01"} onClick={(e) => onChange(e)} >
                                             5:50 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="6:00 PM" value={"06:00:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="6:00 PM" value={"06:00:01"} onClick={(e) => onChange(e)}>
                                             6:00 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="6:10 PM" value={"06:10:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="6:10 PM" value={"06:10:01"} onClick={(e) => onChange(e)}>
                                             6:10 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="6:20 PM" value={"06:20:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="6:20 PM" value={"06:20:01"} onClick={(e) => onChange(e)}>
                                             6:20 PM
                                                 </button>
                                     </div>
                                     <div className="col-lg-2 col-md-6">
-                                        <button className="slot-times" name="slot" data-value="6:30 PM" value={"06:30:01"} onClick={(e) => onChange(e)}>
+                                        <button className="slot-times" type="button" name="slot" data-value="6:30 PM" value={"06:30:01"} onClick={(e) => onChange(e)}>
                                         6:30 PM
                                         </button>
                                     </div>
@@ -232,12 +240,14 @@ Appointment.propTypes = {
     checkavailability: PropTypes.func.isRequired,
     setAlert: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
-    user:PropTypes.object
+    user:PropTypes.object,
+    booked:PropTypes.bool,
   };
   
   const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user:state.auth.user
+    user:state.auth.user,
+    booked:state.appointment.booked
   });
   
   export default connect(mapStateToProps, { checkavailability, setAlert })(Appointment);

@@ -14,3 +14,5 @@ export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const BOOKED_SUCCESS = 'BOOKED_SUCCESS';
 export const BOOKED_FAIL = 'BOOKED_FAIL';
+export const PERSCORE_SUCCESS = 'PERSCORE_SUCCESS';
+export const PERSCORE_FAIL = 'PERSCORE_FAIL';

@@ -33,7 +33,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
 
   if (isAuthenticated) {
     console.log("test");
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 
   return (

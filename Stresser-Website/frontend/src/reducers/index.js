@@ -5,7 +5,7 @@ import auth from './auth';
 import alert from './alert';
 import das from './das'
 import appointment from './appointment'
-
+import personality from './personality'
 
 export default combineReducers({
   errors,
@@ -13,5 +13,6 @@ export default combineReducers({
   auth,
   alert,
   das,
-  appointment
+  appointment,
+  personality
 });

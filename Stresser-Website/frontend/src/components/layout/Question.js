@@ -57,14 +57,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Question=({savescore,isAuthenticated,user})=>  {
+const Question=({savescore, isAuthenticated, user})=>  {
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = tutorialSteps.length;
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setActiveStep((prevActiveStep) => 
+            prevActiveStep + 1)
+
     };
 
     const handleBack = () => {
@@ -77,12 +79,14 @@ const Question=({savescore,isAuthenticated,user})=>  {
     }
 
     const onChange = (index, value, e) => {
-        tutorialSteps[index][2] = value;
+        e.preventDefault();
+        tutorialSteps[index][2] = e.currentTarget.value;
+        console.log(e.currentTarget.value);
         for (let i = 0; i < tutorialSteps.length; i++) {
             userScores[tutorialSteps[i][1]] += tutorialSteps[i][2];    
         }
         // userScores[tutorialSteps[index][1]] += value - tutorialSteps[index][2];
-        console.log(userScores)
+        // console.log(userScores)
     }
 
     const Submit = () => {
@@ -138,14 +142,14 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                 <div key={activeStep}>
                                     <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} checked={tutorialSteps[activeStep][2] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} value={0} checked={tutorialSteps[activeStep][2] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
                                         <label htmlFor={activeStep + "_0"}>NEVER</label>
                                         <div className="check"></div>
                                     </div>
                                     <br />
                                     <br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} checked={tutorialSteps[activeStep][2] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} value={1} checked={tutorialSteps[activeStep][2] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
                                         <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
                                         <div className="check"></div>
                                     </div>
@@ -153,7 +157,7 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} checked={tutorialSteps[activeStep][2] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} value={2} checked={tutorialSteps[activeStep][2] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
                                         <label htmlFor={activeStep + "_2"}>OFTEN</label>
                                         <div className="check"></div>
                                     </div>
@@ -161,7 +165,7 @@ const Question=({savescore,isAuthenticated,user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} checked={tutorialSteps[activeStep][2] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} value={3} checked={tutorialSteps[activeStep][2] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
                                         <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
                                         <div className="check"></div>
                                     </div>
@@ -184,12 +188,12 @@ const Question=({savescore,isAuthenticated,user})=>  {
                 <MobileStepper
                 style={{ width: "100%"}} variant="progress" steps={maxSteps} position="static" activeStep={activeStep} className={classes.root}
                  nextButton={
-                <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>Next{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                <Button size="small" onClick={handleNext} disabled={activeStep == maxSteps - 1}>Next{theme.direction == 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </Button>
                 }
                     backButton={
-                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                        <Button size="small" onClick={handleBack} disabled={activeStep == 0}>
+                        {theme.direction == 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                         Back
                         </Button>
                     }

@@ -7,6 +7,7 @@ router.register('personalitypred',views.StatusView)
 
 urlpatterns=[
   
+    path('api/',include(router.urls)),
     path('api/personalityscore/',views.score),
     #path('form/',views.cxncontact,name='cxform'),
 ]
