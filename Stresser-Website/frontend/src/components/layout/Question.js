@@ -12,11 +12,11 @@ import { connect } from "react-redux";
 import { savescore } from "../../actions/das";
 import PropTypes from "prop-types";
 
-const tutorialSteps = [
-    ["I found it hard to wind down.", "s", 0],
-    ["I was aware of dryness of my mouth", "a", 0],
-    ["I couldn’t seem to experience any positive feeling at all", "d", 0],
-    ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", 0],
+// const tutorialSteps = [
+//     ["I found it hard to wind down.", "s", 0],
+//     ["I was aware of dryness of my mouth", "a", 0],
+//     ["I couldn’t seem to experience any positive feeling at all", "d", 0],
+//     ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", 0],
     // ["I found it difficult to work up the initiative to do things", "d", undefined],
     // ["I tended to over-react to situations", "s", undefined],
     // ["I experienced trembling (e.g. in the hands)", "a", undefined],
@@ -34,7 +34,7 @@ const tutorialSteps = [
     // ["I was aware of the action of my heart in the absence of physical exertion (e.g. sense of heart rate increase, heart missing a beat)", "a", undefined],
     // ["I felt scared without any good reason", "a", undefined],
     // ["I felt that life was meaningless", "d", undefined]
-];
+// ];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,17 +57,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Question=({savescore, isAuthenticated, user})=>  {
+const Question=({savescore,success, isAuthenticated, user})=>  {
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [selected, setSelected] = React.useState();
+
+    const [tutorialSteps, setTutorialSteps] = useState([["I found it hard to wind down.", "s", 0,undefined],
+    ["I was aware of dryness of my mouth", "a", 0,undefined],
+    ["I couldn’t seem to experience any positive feeling at all", "d", 0,undefined]]);
+    
     const maxSteps = tutorialSteps.length;
 
     const handleNext = () => {
+       
         setActiveStep((prevActiveStep) => 
             prevActiveStep + 1)
 
     };
+
+
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -78,9 +87,14 @@ const Question=({savescore, isAuthenticated, user})=>  {
         s: 0,
     }
 
-    const onChange = (index, value, e) => {
+    const  onChange = (index, value, e) => {
+
         e.preventDefault();
-        tutorialSteps[index][2] = e.currentTarget.value;
+        var que = tutorialSteps
+        que[index][3] = value
+        setTutorialSteps(que);
+        setSelected(value);
+        
         console.log(e.currentTarget.value);
         for (let i = 0; i < tutorialSteps.length; i++) {
             userScores[tutorialSteps[i][1]] += tutorialSteps[i][2];    
@@ -90,11 +104,15 @@ const Question=({savescore, isAuthenticated, user})=>  {
     }
 
     const Submit = () => {
-        savescore(user['id'],userScores['d'],userScores['a'],userScores['s']);
-        <Redirect to="/scoredisplay" />;
+         savescore(user['id'],userScores['d'],userScores['a'],userScores['s']);
+       
         
 
     };
+    // if(success)
+    // {
+    //     return <Redirect to="/scoredisplay" />;
+    // }
 
     return (
         <Fragment>
@@ -142,14 +160,14 @@ const Question=({savescore, isAuthenticated, user})=>  {
                                 <div key={activeStep}>
                                     <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} value={0} checked={tutorialSteps[activeStep][2] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} value={0} checked={tutorialSteps[activeStep][3] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
                                         <label htmlFor={activeStep + "_0"}>NEVER</label>
                                         <div className="check"></div>
                                     </div>
                                     <br />
                                     <br />
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} value={1} checked={tutorialSteps[activeStep][2] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} value={1} checked={tutorialSteps[activeStep][3] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
                                         <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
                                         <div className="check"></div>
                                     </div>
@@ -215,11 +233,13 @@ const Question=({savescore, isAuthenticated, user})=>  {
 Question.propTypes = {
     savescore: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
+    success:PropTypes.bool
   };
   
   const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user:state.auth.user
+    user:state.auth.user,
+    success:state.das.success
   });
   
   export default connect(mapStateToProps, { savescore })(Question);

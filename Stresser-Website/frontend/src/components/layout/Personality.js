@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -91,6 +91,18 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
     setPage(value);
   };
 
+  // const [userScores, setUserScores] = useState({
+  //   EXT: 0,
+  //   EST: 0,
+  //   AGR: 0,
+  //   CSN: 0,
+  //   OPN: 0,
+  // });
+
+  // const { EXT, EST, AGR, CSN, OPN } = userScores;
+  // const onChange = (e) =>
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const userScores = {
     EXT: 0,
     EST: 0,
@@ -98,7 +110,9 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
     CSN: 0,
     OPN: 0,
   };
+
   const onChange = (page, index, value, e) => {
+    e.preventDefault();
     let i = 0;
 
     // console.log(questions[page][index][1]);
@@ -168,10 +182,11 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
   // let est=(userScores["EST"]*(8 -1))/ 40 + 1;
   // console.log(ext);
 
-  const Submit = () => {
+  const Submit = (e) => {
     // if(!isAuthenticated){
     //     return setAlert("You need to authenticate prior to take the test","danger")
     // }
+    e.preventDefault();
     opn = (userScores["OPN"] * (8 - 1)) / 40 + 1;
     opn = parseInt(opn);
     console.log(opn);
@@ -183,7 +198,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
      console.log(ext)
      console.log(est)
      console.log(agr)
-    return personalityscore("Male", 25, opn, csn, agr, ext, est);
+     return personalityscore("Male", 25, opn, csn, agr, ext, est);
   };
 
   if(personalitypred !== ""){
@@ -193,6 +208,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
   
 
   return (
+    
     <div className={classes.root}>
       <div className="quesBlock">
         <div
@@ -281,11 +297,13 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       </div>
       <Typography>Page: {page}</Typography>
 
+      {/* onSubmit={(e) => onSubmit(e)} */}
+
       <div className="next-prev" style={{ width: "20%" }}>
         <div className="col-6">
           <button
             className="appo-button"
-            onClick={Submit}
+            onClick={(e) => Submit(e)}
             style={{ marginLeft: "1065px", fontSize: "16px" }}
             disabled={page !== 5}
           >

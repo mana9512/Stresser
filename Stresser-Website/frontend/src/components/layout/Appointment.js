@@ -8,7 +8,7 @@ import {
 } from '@material-ui/pickers';
 
 //Redux
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect ,useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { checkavailability } from "../../actions/appointment";
@@ -21,7 +21,7 @@ const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}
     if(!isAuthenticated){
         setAlert("You need to autheticate prior to book an appointment","danger")
     }
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-10-14T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-10-17T21:11:54'));
     
     const handleDateChange = (date) => {
       setSelectedDate(date);
@@ -57,6 +57,7 @@ const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}
       };
       if(booked){
         return <Redirect to="/bookedsuccess" />;
+        // history.push('/bookedsuccess')
       }
      
 
@@ -72,6 +73,7 @@ const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}
                                 <option name="doctor" value="">Select Doctor</option>
                                 <option name="doctor" value={1}>Dr. Jenifer Nixon</option>
                                 <option name="doctor"  value={2}>Dr. Howard Parison</option>
+                                <option name="doctor"  value={3}>Dr. Stevie Budd</option>
                             </select>
                         </div>
                         <div className="col-6" style={{ textAlign: "right" }}>

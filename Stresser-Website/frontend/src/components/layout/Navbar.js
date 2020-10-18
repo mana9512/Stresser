@@ -13,7 +13,7 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
           <div className="col-8" style={{ textAlign: "center" }}>
             <div className="menu">
               <Link to="/bookappointment" className="navMenuItem float">Appointment Booking</Link>
-              <div className="navMenuItem float">Chat</div>
+              <Link to="/question" className="navMenuItem float">DASS Test</Link>
               <Link to="/checkpersonalitytype" className="navMenuItem float">Personality Types</Link>
               <div className="navMenuItem float">About</div>
             </div>

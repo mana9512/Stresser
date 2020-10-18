@@ -7,7 +7,7 @@ import {
 } from './types';
 
 
-export const personalityscore = (gender, age, user, openness, conscientiousness, agreeableness, extraversion, neuroticism) => (dispatch) => {
+export const personalityscore = (gender, age, openness, conscientiousness, agreeableness, extraversion, neuroticism) => (dispatch) => {
     // Headers
     const config = {
       headers: {
@@ -16,7 +16,7 @@ export const personalityscore = (gender, age, user, openness, conscientiousness,
     };
   
     // Request Body
-    const body = JSON.stringify({gender, age, user, openness, conscientiousness, agreeableness, extraversion, neuroticism});
+    const body = JSON.stringify({gender, age, openness, conscientiousness, agreeableness, extraversion, neuroticism});
     console.log(body);
     axios
       .post('/api/personalityscore/', body, config)

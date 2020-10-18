@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.core.mail import send_mail
 # Create your views here.
 from appointmentbooking.models import Booking, TimeSlot, Specialist
 from rest_framework import viewsets, permissions, status
@@ -38,15 +38,17 @@ class TimeSlotViewSet(APIView):
             if not created:
                 newobj=TimeSlotSerializer(data={ 'slot':request.data['slot'],'date':request.data['date'],'specialist':request.data['specialist'],'availability':False })
                 if newobj.is_valid():
-                    print("Here1")
+                    # print(newobj.data)
                     newobj.save()
+                    send_mail('Appointment Reminder', 'Your Appointment has been scheduled with '+str(newobj.validated_data['specialist'])+' on Date:'+str(newobj.validated_data['date'])+'at time'+str(newobj.validated_data['slot']), 'mana999526@gmail.com',['manashreepatel28@gmail.com'], fail_silently=False)
                     BookingViewSet.post(self,request,newobj.data['id'])
-                    print("Booking called")
+                   
+                    
                     return Response(newobj.data,status=status.HTTP_201_CREATED)
                 else:
                     return Response(newobj.errors,status=status.HTTP_400_BAD_REQUEST)
             else:
-                print("Here2")
+               
                 return Response({"Slot not Available"})
         return Response(checkavailability.errors,status=status.HTTP_400_BAD_REQUEST)
 
