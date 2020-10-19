@@ -5,16 +5,24 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+  
   switch (action.type) {
     case PERSCORE_SUCCESS:
+      localStorage.setItem('personalitypred',action.payload)
       return {
-        personalitypred: action.payload,
+        ...state,
+
+       
       };
       case PERSCORE_FAIL:
+  
+        localStorage.removeItem('personalitypred',action.payload)
         return{
+            ...state,
             personalitypred: ""
         }
     default:
+
       return state;
   }
 }

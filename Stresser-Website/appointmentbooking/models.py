@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Specialist(models.Model):
     specialist_name = models.CharField(max_length=100)
-    specialist_contact = models.CharField(max_length=13)
+    specialist_contact = models.CharField(max_length=16)
     specialist_about = models.CharField(max_length=800)
 
 class TimeSlot(models.Model):

@@ -36,7 +36,8 @@ export class App extends Component {
             <Navbar />
             <Alert/>
             <Switch>
-            <Route exact path="/predictedpersonality" component={PredictedPersonality} /><Route exact path="/bookappointment" component={Appointment} />
+            <Route exact path="/predictedpersonality" component={PredictedPersonality} />
+              <Route exact path="/bookappointment" component={Appointment} />
               <Route exact path="/scoredisplay" component={ScoreDisplay} />
               <Route exact path="/checkpersonalitytype" component={Personality} />
               <Route exact path="/bookedsuccess" component={AppointmentSuccess} />
