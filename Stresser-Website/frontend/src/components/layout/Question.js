@@ -67,7 +67,7 @@ const Question=({savescore,success, isAuthenticated, user})=>  {
     const maxSteps = tutorialSteps.length;
 
     const handleNext = () => {
-       
+        setSelected(undefined)
         setActiveStep((prevActiveStep) => 
             prevActiveStep + 1)
 
@@ -172,7 +172,7 @@ const Question=({savescore,success, isAuthenticated, user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} value={2} checked={tutorialSteps[activeStep][2] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} value={2} checked={tutorialSteps[activeStep][3] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
                                         <label htmlFor={activeStep + "_2"}>OFTEN</label>
                                         <div className="check"></div>
                                     </div>
@@ -180,7 +180,7 @@ const Question=({savescore,success, isAuthenticated, user})=>  {
                                     <br />
 
                                     <div className="col-7">
-                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} value={3} checked={tutorialSteps[activeStep][2] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
+                                        <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} value={3} checked={tutorialSteps[activeStep][3] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
                                         <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
                                         <div className="check"></div>
                                     </div>

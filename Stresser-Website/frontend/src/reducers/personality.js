@@ -1,7 +1,7 @@
 import { PERSCORE_FAIL,PERSCORE_SUCCESS } from '../actions/types';
 
 const initialState = {
-  personalitypred: "",
+  personalitypred: undefined,
 };
 
 export default function (state = initialState, action) {
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
         localStorage.removeItem('personalitypred',action.payload)
         return{
             ...state,
-            personalitypred: ""
+            personalitypred: undefined
         }
     default:
 

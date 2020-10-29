@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -16,73 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const questions = [
-  [
-    ["I am the life of the party.", "EXT", 1],
-    // ["I don't talk a lot.", "EXT", 1],
-    // ["I feel comfortable around people.","EXT", 1],
-    // ["I keep in the background.","EXT", 1],
-    // ["I start conversations.","EXT", 1],
-    // ["I have little to say.","EXT", 1],
-    // ["I talk to a lot of different people at parties.","EXT", 1],
-    // ["I don't like to draw attention to myself.","EXT", 1],
-    // ["I don't mind being the center of attention.","EXT", 1],
-    // ["I am quiet around strangers.","EXT", 1],
-  ],
-  [
-    ["I get stressed out easily.", "EST", 1],
-    // ["I am relaxed most of the time.", "EST", 1],
-    // ["I worry about things.", "EST", 1],
-    // ["I seldom feel blue.", "EST", 1],
-    // ["I am easily disturbed.", "EST", 1],
-    // ["I get upset easily.", "EST", 1],
-    // ["I change my mood a lot.", "EST", 1],
-    // ["I have frequent mood swings.", "EST", 1],
-    // ["I get irritated easily.", "EST", 1],
-    // ["I often feel blue.", "EST", 1],
-  ],
-  [
-    ["I feel little concern for others.", "AGR", 1],
-    // ["I am interested in people.", "AGR", 1],
-    // ["I insult people.", "AGR", 1],
-    // ["I sympathize with others' feelings.", "AGR", 1],
-    // ["I am not interested in other people's problems.", "AGR", 1],
-    // ["I have a soft heart.", "AGR", 1],
-    // ["I am not really interested in others.", "AGR", 1],
-    // ["I take time out for others.", "AGR", 1],
-    // ["I feel others' emotions.", "AGR", 1],
-    // ["I make people feel at ease.", "AGR", 1]
-  ],
-  [
-    ["I am always prepared.", "CSN", 1],
-    // ["I leave my belongings around.", "CSN", 1],
-    // ["I pay attention to details.", "CSN", 1],
-    // ["I make a mess of things.", "CSN", 1],
-    // ["I get chores done right away.", "CSN", 1],
-    // ["I often forget to put things back in their proper place.", "CSN", 1],
-    // ["I like order.", "CSN", 1],
-    // ["I shirk my duties.", "CSN", 1],
-    // ["I follow a schedule.", "CSN", 1],
-    // ["I am exacting in my work.", "CSN", 1],
-  ],
-  [
-    ["I have a rich vocabulary.", "OPN", 1],
-    // ["I have difficulty understanding abstract ideas.", "OPN", 1],
-    // ["I have a vivid imagination.", "OPN", 1],
-    // ["I am not interested in abstract ideas.", "OPN", 1],
-    // ["I have excellent ideas.", "OPN", 1],
-    // ["I do not have a good imagination.", "OPN", 1],
-    // ["I am quick to understand things.", "OPN", 1],
-    // ["I use difficult words.", "OPN", 1],
-    // ["I spend time reflecting on things.", "OPN", 1],
-    // ["I am full of ideas.", "OPN", 1],
-  ],
-];
-let ext = 0;
-let opn = 0;
-let csn = 0;
-let est = 0;
-let agr = 0;
+
 
 const Personality = ({ personalityscore, isAuthenticated, personalitypred, user }) => {
   const classes = useStyles();
@@ -94,8 +28,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
   const [questions,setQuestions] = useState([
     [
       ["I am the life of the party.", "EXT", 1,undefined],
-      // ["I don't talk a lot.", "EXT", 1,undefined],
-      // ["I feel comfortable around people.","EXT", 1,undefined],
+      ["I don't talk a lot.", "EXT", 1,undefined],
+      ["I feel comfortable around people.","EXT", 1,undefined],
       // ["I keep in the background.","EXT", 1,undefined],
       // ["I start conversations.","EXT", 1,undefined],
       // ["I have little to say.","EXT", 1,undefined],
@@ -106,8 +40,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
     ],
     [
       ["I get stressed out easily.", "EST", 1,undefined],
-      // ["I am relaxed most of the time.", "EST", 1,undefined],
-      // ["I worry about things.", "EST", 1,undefined],
+      ["I am relaxed most of the time.", "EST", 1,undefined],
+      ["I worry about things.", "EST", 1,undefined],
       // ["I seldom feel blue.", "EST", 1,undefined],
       // ["I am easily disturbed.", "EST", 1,undefined],
       // ["I get upset easily.", "EST", 1,undefined],
@@ -153,25 +87,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       // ["I am full of ideas.", "OPN", 1,undefined],
     ],
   ])
-  // const [userScores, setUserScores] = useState({
-  //   EXT: 0,
-  //   EST: 0,
-  //   AGR: 0,
-  //   CSN: 0,
-  //   OPN: 0,
-  // });
-
-  // const { EXT, EST, AGR, CSN, OPN } = userScores;
-  // const onChange = (e) =>
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const userScores = {
-    EXT: 0,
-    EST: 0,
-    AGR: 0,
-    CSN: 0,
-    OPN: 0,
-  };
+ 
+  
 
   const onChange = (page, index, value, e) => {
     e.preventDefault();
@@ -182,7 +99,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       setSelected(value);
     }
     
-    console.log(userScores);
+  
   };
   
 
@@ -191,24 +108,18 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
     //     return setAlert("You need to authenticate prior to take the test","danger")
     // }
     e.preventDefault();
-    opn = (userScores["OPN"] * (8 - 1)) / 40 + 1;
-    opn = parseInt(opn);
-    console.log(opn);
-     ext=parseInt((userScores["EXT"]*(8 -1))/ 40 + 1);
-     agr=parseInt((userScores["AGR"]*(8 -1))/ 40 + 1);
-     csn=parseInt((userScores["CSN"]*(8 -1))/ 40 + 1);
-     est=parseInt((userScores["EST"]*(8 -1))/ 40 + 1);
-     console.log(csn)
-     console.log(ext)
-     console.log(est)
-     console.log(agr)
-     return personalityscore("Male", 25, opn, csn, agr, ext, est);
+    
+     return personalityscore(questions[2][0][3], questions[2][9][3], questions[2][1][3], questions[2][2][3], questions[2][3][3], questions[2][4][3], questions[2][5][3],questions[2][6][3],questions[2][7][3],questions[2][8][3],
+      questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[3][2][3], questions[3][3][3], questions[3][4][3], questions[3][5][3],questions[3][6][3],questions[3][7][3],questions[3][8][3],
+      questions[1][0][3], questions[1][9][3], questions[1][1][3], questions[1][2][3], questions[1][3][3], questions[1][4][3], questions[1][5][3],questions[1][6][3],questions[1][7][3],questions[1][8][3],
+      questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[0][2][3], questions[0][3][3], questions[0][4][3], questions[0][5][3],questions[0][6][3],questions[0][7][3],questions[0][8][3],
+      questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],);
   };
 
-  if(personalitypred !== ""){
-    console.log("hiii");
-    return <Redirect to="/predictedpersonality" />;
-  }
+  // if(personalitypred !== ""){
+  //   console.log("hiii");
+  //   return <Redirect to="/predictedpersonality" />;
+  // }
   
 
   return (
