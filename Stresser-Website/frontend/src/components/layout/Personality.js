@@ -22,6 +22,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
+    setSelected(undefined)
     setPage(value);
   };
   const [selected, setSelected] = React.useState();
@@ -93,11 +94,12 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
   const onChange = (page, index, value, e) => {
     e.preventDefault();
     let i = 0;
-    for (i = 0; i < questions[page].length; i++) {
-      questions[page][i][3]=value
+    // for (i = 0; i < questions[page].length; i++) {
+      questions[page][index][3]=value
       setQuestions(questions);
       setSelected(value);
-    }
+      console.log(questions[page][index][3]);
+    // }
     
   
   };
@@ -116,16 +118,13 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],);
   };
 
-  // if(personalitypred !== ""){
-  //   console.log("hiii");
-  //   return <Redirect to="/predictedpersonality" />;
-  // }
+  
   
 
   return (
     
     <div className={classes.root}>
-      <div className="quesBlock">
+      <div className="quesBlock" style={{ width: "100%", marginLeft: "150px" }}>
         <div
           className="container"
           style={{ width: "100%", margin: "auto", marginBottom: "20px" }}
@@ -216,23 +215,25 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
           })}
         </div>
       </div>
-      <Typography>Page: {page}</Typography>
+      <Typography style={{ width: "100%", marginLeft: "590px" }}>Page: {page}</Typography>
 
       {/* onSubmit={(e) => onSubmit(e)} */}
 
-      <div className="next-prev" style={{ width: "20%" }}>
-        <div className="col-6">
-          <button
-            className="appo-button"
-            onClick={(e) => Submit(e)}
-            style={{ marginLeft: "1065px", fontSize: "16px" }}
-            disabled={page !== 5}
-          >
-            Finish
-          </button>
-        </div>
-      </div>
       <Pagination count={5} page={page} onChange={handleChange} />
+          <div className="next-prev" style={{ width: "20%" }}>
+            <div className="col-6">
+              <button
+                className="appo-button"
+                onClick={(e) => Submit(e)}
+                style={{ marginLeft: "1065px", fontSize: "16px" }}
+                disabled={page !== 5}
+              >
+                Finish
+              </button>
+            </div>
+          </div>
+          <br/>
+          <br/>
     </div>
   );
 };

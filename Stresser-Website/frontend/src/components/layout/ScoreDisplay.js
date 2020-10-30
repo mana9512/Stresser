@@ -1,70 +1,71 @@
-import React, { Fragment } from 'react'
+import React, { Fragment ,useEffect,useState} from 'react'
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
 
-let dtext="";
-let stext="";
-let atext="";
+
 const ScoreDisplay = ({score}) => {
-    if(score["Dscore"]>=0 && score["Dscore"]<=6){
-        dtext+="Sit back & relax. Your are about to be at the peak of your healthy mind. Say,'Have a nice day every morning to yourself'. You are being loved and cared for abundantly."
-    }else if(score["Dscore"]>=7 && score["Dscore"]<=10){
-        dtext+='"Om".Avidly recite this, for your mind requires a new dimension. You can do good, speak your heart out to someone and if none exists all-mighty is all ears to you.'
-    }
-    else{
-        dtext+="An expert guidance might be the right thing to do. Pull the dialers' list or book an appointment with the doc to make things better before hitting the opposite. There still a lot to live for."
-    }
-
-    if(score["Sscore"]>=0 && score["Sscore"]<=9){
-        stext+="A good book or a soulful music might pull away your heart strings. You are correcting your wrongs to right and might feel happier soon. What's the fun in stress livin? Nothing. So live happily "
-    }else if(score["Sscore"]>=10 && score["Sscore"]<=12){
-        stext+="You might want to jump off the bandwagon and destress a bit. Mini-vacay might do the magic and set you free of stress. Taking bus everday? Try a bicycle, we're sure there's one in the backyard!"
-    }
-    else{
-        stext+="Don’t jump to ill-medication, rather book an appointment with the best healer on the earth. The doctor. Yes! you got it right. Blow away the air off the stress-balloon rather then letting it burst. See you with a broad smile and glowing forehead. "
-    }
-
-    if(score["Ascore"]>=0 && score["Ascore"]<=5){
-        atext+="Inhale and exhale... Your are on path to be the most patient person in the world. Rejoice this feeling as you get more of it."
-    }else if(score["Ascore"]>=6 && score["Ascore"]<=7){
-        atext+='Have a glass of water and see how you drain your anxiety down out. No more crossings of fingers or hopping around and a no-coffee week! Just meditate to set away your anxiousness.'
-    }
-    else{
-        atext+="A quick appointment the very next moment might be the magic to your healing and a less anxious & more fascinating match of your favorite teams. Do see an expert. He/she has the elixir to your problem. "
-    }
     
+    let scr = JSON.parse(localStorage.getItem('score'));
+    let text = display();
+
+    function display(){
+        console.log('inside function');
+        console.log(scr);
+        text = {};
+        if(scr!=null){
+            if(scr["Dscore"]>=0 && scr["Dscore"]<=6){
+                text["dtext"]="Sit back & relax. Your are about to be at the peak of your healthy mind. Say,'Have a nice day every morning to yourself'. You are being loved and cared for abundantly."
+            } else if(scr["Dscore"]>=7 && scr["Dscore"]<=10){
+                text["dtext"]='"Om".Avidly recite this, for your mind requires a new dimension. You can do good, speak your heart out to someone and if none exists all-mighty is all ears to you.'
+            } else{
+                text["dtext"]="An expert guidance might be the right thing to do. Pull the dialers' list or book an appointment with the doc to make things better before hitting the opposite. There still a lot to live for."
+            }
+            if(scr["Sscore"]>=0 && scr["Sscore"]<=9){
+                text["stext"]="A good book or a soulful music might pull away your heart strings. You are correcting your wrongs to right and might feel happier soon. What's the fun in stress livin? Nothing. So live happily "
+            }else if(scr["Sscore"]>=10 && scr["Sscore"]<=12){
+                text["stext"]="You might want to jump off the bandwagon and destress a bit. Mini-vacay might do the magic and set you free of stress. Taking bus everday? Try a bicycle, we're sure there's one in the backyard!"
+            } else{
+                text["stext"]="Don’t jump to ill-medication, rather book an appointment with the best healer on the earth. The doctor. Yes! you got it right. Blow away the air off the stress-balloon rather then letting it burst. See you with a broad smile and glowing forehead. "
+            }
+            if(scr["Ascore"]>=0 && scr["Ascore"]<=5){
+                text["atext"]="Inhale and exhale... Your are on path to be the most patient person in the world. Rejoice this feeling as you get more of it."
+            }else if(scr["Ascore"]>=6 && scr["Ascore"]<=7){
+                text["atext"]='Have a glass of water and see how you drain your anxiety down out. No more crossings of fingers or hopping around and a no-coffee week! Just meditate to set away your anxiousness.'
+            } else{
+                text["atext"]="A quick appointment the very next moment might be the magic to your healing and a less anxious & more fascinating match of your favorite teams. Do see an expert. He/she has the elixir to your problem. "
+            }
+        }
+        return text;
+    };
 
     return (
         <Fragment>
             <div id="Web_1920__1" >
-                    <svg class="Rectangle_1">
+                    <svg className="Rectangle_1">
                         <rect id="Rectangle_1" rx="0" ry="0" x="0" y="0" width="641" height="1080">
                         </rect>
                     </svg>
-                    <svg class="Rectangle_2">
+                    <svg className="Rectangle_2">
                         <rect id="Rectangle_2" rx="0" ry="0" x="0" y="0" width="638" height="1080">
                         </rect>
                     </svg>
-                    {/* <div id="_">
-                        <span></span><br>
-                    </div> */}
-                    <svg class="Path_1" viewBox="8.789 -151.953 114.453 154.98">
+                    <svg className="Path_1" viewBox="8.789 -151.953 114.453 154.98">
                         <path id="Path_1" d="M 123.2421875 0 L 87.98828125 0 L 87.98828125 -11.42578125 C 81.94071197509766 -6.477863788604736 76.28351593017578 -2.832030773162842 71.01669311523438 -0.48828125 C 65.74987030029297 1.85546875 59.67000198364258 3.02734375 52.777099609375 3.02734375 C 39.44803619384766 3.02734375 28.7844352722168 -2.115884780883789 20.78628540039063 -12.40234375 C 12.78813552856445 -22.68880081176758 8.789061546325684 -36.55598449707031 8.7890625 -54.00390625 C 8.7890625 -63.31380462646484 10.13819313049316 -71.56575775146484 12.83645629882813 -78.759765625 C 15.53471946716309 -85.95377349853516 19.22505569458008 -92.12239074707031 23.907470703125 -97.265625 C 28.32844924926758 -102.1484375 33.69267654418945 -105.9407577514648 40.00015258789063 -108.642578125 C 46.30762100219727 -111.3443984985352 52.61484146118164 -112.6953125 58.92181396484375 -112.6953125 C 65.49021148681641 -112.6953125 70.87122344970703 -111.9954452514648 75.06484985351563 -110.595703125 C 79.25847625732422 -109.1959609985352 83.5662841796875 -107.421875 87.98828125 -105.2734375 L 87.98828125 -151.953125 L 123.2421875 -151.953125 L 123.2421875 0 Z M 87.98828125 -30.18646240234375 L 87.98828125 -84.07745361328125 C 85.52042388916016 -85.12114715576172 82.92235565185547 -85.87111663818359 80.194091796875 -86.32736206054688 C 77.4658203125 -86.78359222412109 74.96490478515625 -87.01171112060547 72.69134521484375 -87.01171875 C 63.46689224243164 -87.01171112060547 56.54881286621094 -84.12652587890625 51.93710327148438 -78.35617065429688 C 47.32538986206055 -72.58580780029297 45.01953125 -64.58180999755859 45.01953125 -54.34417724609375 C 45.01953125 -43.58570861816406 46.87067794799805 -35.77753448486328 50.57296752929688 -30.91964721679688 C 54.2752571105957 -26.06175422668457 60.21881103515625 -23.63281059265137 68.40362548828125 -23.6328125 C 71.58660888671875 -23.6328125 74.96439361572266 -24.23604393005371 78.5369873046875 -25.4425048828125 C 82.10958099365234 -26.64896583557129 85.260009765625 -28.23028564453125 87.98828125 -30.18646240234375 Z">
                         </path>
                     </svg>
-                    <svg class="Path_2" viewBox="8.398 -112.793 109.473 115.723">
+                    <svg className="Path_2" viewBox="8.398 -112.793 109.473 115.723">
                         <path id="Path_2" d="M 83.0078125 -28.6865234375 L 83.0078125 -51.46484375 C 78.25519561767578 -51.07522964477539 73.11196899414063 -50.53990173339844 67.578125 -49.85885620117188 C 62.04426956176758 -49.17780685424805 57.84505081176758 -48.382568359375 54.98046875 -47.47314453125 C 51.46484375 -46.37044143676758 48.779296875 -44.76445388793945 46.923828125 -42.65518188476563 C 45.068359375 -40.54590225219727 44.140625 -37.77160263061523 44.140625 -34.332275390625 C 44.140625 -32.06074905395508 44.3359375 -30.21112823486328 44.7265625 -28.78341674804688 C 45.1171875 -27.35569953918457 46.09375 -25.99283599853516 47.65625 -24.69482421875 C 49.15364456176758 -23.39681053161621 50.94400787353516 -22.4395751953125 53.02734375 -21.8231201171875 C 55.11067581176758 -21.2066650390625 58.36588668823242 -20.8984375 62.79296875 -20.8984375 C 66.30859375 -20.8984375 69.873046875 -21.61229515075684 73.486328125 -23.04000854492188 C 77.099609375 -24.46772193908691 80.2734375 -26.34989356994629 83.0078125 -28.6865234375 Z M 83.0078125 -11.62109375 C 81.11978912353516 -10.18880176544189 78.77603912353516 -8.463541030883789 75.9765625 -6.4453125 C 73.17708587646484 -4.427083015441895 70.54036712646484 -2.83203125 68.06640625 -1.66015625 C 64.61588287353516 -0.09765625 61.03515243530273 1.057942628860474 57.32421875 1.806640625 C 53.61328125 2.555338382720947 49.54426956176758 2.929687261581421 45.1171875 2.9296875 C 34.70051574707031 2.929687261581421 25.97656059265137 -0.29296875 18.9453125 -6.73828125 C 11.9140625 -13.18359375 8.3984375 -21.41926956176758 8.3984375 -31.4453125 C 8.3984375 -39.453125 10.18880176544189 -45.99609375 13.76953125 -51.07421875 C 17.35025978088379 -56.15234375 22.42838287353516 -60.15625 29.00390625 -63.0859375 C 35.51432418823242 -66.015625 43.58723831176758 -68.09896087646484 53.22265625 -69.3359375 C 62.85807037353516 -70.57291412353516 72.85155487060547 -71.48436737060547 83.203125 -72.0703125 L 83.203125 -72.65625 C 83.20311737060547 -78.71092987060547 80.72915649414063 -82.89386749267578 75.78125 -85.205078125 C 70.83333587646484 -87.51627349853516 63.54166793823242 -88.67186737060547 53.90625 -88.671875 C 48.11198043823242 -88.671875 41.92708206176758 -87.646484375 35.3515625 -85.595703125 C 28.77604103088379 -83.544921875 24.05599021911621 -81.96614837646484 21.19140625 -80.859375 L 17.96875 -80.859375 L 17.96875 -107.32421875 C 21.6796875 -108.30078125 27.71809768676758 -109.4563827514648 36.083984375 -110.791015625 C 44.44986724853516 -112.1256484985352 52.83202362060547 -112.79296875 61.23046875 -112.79296875 C 81.21744537353516 -112.79296875 95.65428924560547 -109.716796875 104.541015625 -103.564453125 C 113.427734375 -97.41210174560547 117.87109375 -87.76040649414063 117.87109375 -74.609375 L 117.87109375 0 L 83.0078125 0 L 83.0078125 -11.62109375 Z">
                         </path>
                     </svg>
-                    <svg class="Path_3" viewBox="9.277 -112.695 102.637 115.723">
+                    <svg className="Path_3" viewBox="9.277 -112.695 102.637 115.723">
                         <path id="Path_3" d="M 111.9140625 -34.765625 C 111.9140625 -23.4375 106.8359375 -14.306640625 96.6796875 -7.373046875 C 86.52342987060547 -0.439453125 72.62368774414063 3.02734375 54.98046875 3.02734375 C 45.21484375 3.02734375 36.36067581176758 2.115885496139526 28.41796875 0.29296875 C 20.47525787353516 -1.529947996139526 14.09505081176758 -3.548177003860474 9.27734375 -5.76171875 L 9.27734375 -34.66796875 L 12.5 -34.66796875 C 14.2578125 -33.43098831176758 16.29231834411621 -32.08007431030273 18.603515625 -30.615234375 C 20.91471290588379 -29.150390625 24.18619537353516 -27.57161521911621 28.41796875 -25.87890625 C 32.06380081176758 -24.38150978088379 36.19791412353516 -23.09570121765137 40.8203125 -22.021484375 C 45.44270706176758 -20.947265625 50.39062118530273 -20.41015625 55.6640625 -20.41015625 C 62.56509780883789 -20.41015625 67.67577362060547 -21.17513084411621 70.99609375 -22.705078125 C 74.31640625 -24.23502540588379 75.9765625 -26.49739456176758 75.9765625 -29.4921875 C 75.9765625 -32.16145706176758 75 -34.09830474853516 73.046875 -35.302734375 C 71.09375 -36.50716018676758 67.3828125 -37.66275787353516 61.9140625 -38.76953125 C 59.30989456176758 -39.35546875 55.77799606323242 -39.990234375 51.318359375 -40.673828125 C 46.85872268676758 -41.357421875 42.80598831176758 -42.1875 39.16015625 -43.1640625 C 29.19921875 -45.76823043823242 21.80989646911621 -49.82096481323242 16.9921875 -55.322265625 C 12.17447853088379 -60.82356643676758 9.765625 -67.67578125 9.765625 -75.87890625 C 9.765625 -86.42577362060547 14.76236915588379 -95.19855499267578 24.755859375 -102.197265625 C 34.74934768676758 -109.1959609985352 48.40494537353516 -112.6953125 65.72265625 -112.6953125 C 73.92578125 -112.6953125 81.787109375 -111.865234375 89.306640625 -110.205078125 C 96.826171875 -108.544921875 102.7018203735352 -106.7708358764648 106.93359375 -104.8828125 L 106.93359375 -77.1484375 L 103.90625 -77.1484375 C 98.69791412353516 -80.72916412353516 92.75715637207031 -83.64257049560547 86.083984375 -85.888671875 C 79.41080474853516 -88.134765625 72.65624237060547 -89.2578125 65.8203125 -89.2578125 C 60.15625 -89.2578125 55.38737106323242 -88.4765625 51.513671875 -86.9140625 C 47.63997268676758 -85.3515625 45.70312118530273 -83.13802337646484 45.703125 -80.2734375 C 45.70312118530273 -77.66927337646484 46.58202743530273 -75.68359375 48.33984375 -74.31640625 C 50.09765625 -72.94921875 54.23176956176758 -71.58203125 60.7421875 -70.21484375 C 64.32291412353516 -69.49869537353516 68.18033599853516 -68.79882049560547 72.314453125 -68.115234375 C 76.44855499267578 -67.431640625 80.59894561767578 -66.56900787353516 84.765625 -65.52734375 C 94.01041412353516 -63.11848831176758 100.8463516235352 -59.326171875 105.2734375 -54.150390625 C 109.7005081176758 -48.974609375 111.9140548706055 -42.51301956176758 111.9140625 -34.765625 Z">
                         </path>
                     </svg>
                     <div id="Lorem_ipsum_dolor_sit_amet_con">
-                        <span>{dtext}</span>
+                        <span>{text["dtext"]}</span>
                     </div>
-                    <img id="stress" class="image " src={"/static/frontend/img/stress.png"} srcset={"/static/frontend/img/stress.png 1x, /static/frontend/img/stress@2x.png 2x"}/>
+                    <img id="stress" className="image " src={"/static/frontend/img/stress.png"} srcSet={"/static/frontend/img/stress.png 1x, /static/frontend/img/stress@2x.png 2x"}/>
                     <div id="Depression">
                         <span>Depression</span>
                     </div>
@@ -75,13 +76,13 @@ const ScoreDisplay = ({score}) => {
                         <span>Stress</span>
                     </div>
                     <div id="Lorem_ipsum_dolor_sit_amet_con_r">
-                        <span>{atext}</span>
+                <span>{text["atext"]}</span>
                     </div>
                     <div id="Lorem_ipsum_dolor_sit_amet_con_s">
-                <span>{stext}</span>
+                <span>{text["stext"]}</span>
                     </div>
-                    <img id="dep" class="image" src={"/static/frontend/img/dep.png"} srcset={"/static/frontend/img/dep.png 1x, /static/frontend/img/dep@2x.png 2x"}/>
-                    <img id="anxiety" class="image" src={"/static/frontend/img/anxiety.png"} srcset={"/static/frontend/img/anxiety.png 1x, /static/frontend/img/anxiety@2x.png 2x"}/>
+                    <img id="dep" className="image" src={"/static/frontend/img/dep.png"} srcSet={"/static/frontend/img/dep.png 1x, /static/frontend/img/dep@2x.png 2x"}/>
+                    <img id="anxiety" className="image" src={"/static/frontend/img/anxiety.png"} srcSet={"/static/frontend/img/anxiety.png 1x, /static/frontend/img/anxiety@2x.png 2x"}/>
             </div>
         </Fragment>
         
@@ -92,9 +93,7 @@ ScoreDisplay.propTypes = {
 score:PropTypes.object
 }
 
-
-  
-  const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     score: state.das.score,
   });
   

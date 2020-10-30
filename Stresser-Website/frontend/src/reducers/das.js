@@ -8,15 +8,15 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case SCORE_SUCCESS:
+      localStorage.setItem('score',JSON.stringify(action.payload))
       return {
         ...state,
-        score: action.payload,
         success:true
       };
       case SCORE_FAIL:
+        localStorage.removeItem('score',JSON.stringify(action.payload))
         return{
           ...state,
-          score:null,
           success:false
         }
     default:

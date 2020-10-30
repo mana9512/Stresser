@@ -9,7 +9,7 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
     <Fragment>
       <div className="headerBar">
         <div className="row">
-        <Link to="/"className="logo col-2">Stresser</Link>
+        <Link to="/"className="logo col-lg-2 col-md-4 col-sm-12">Stresser</Link>
           <div className="col-8" style={{ textAlign: "center" }}>
             <div className="menu">
               <Link to="/bookappointment" className="navMenuItem float">Appointment Booking</Link>

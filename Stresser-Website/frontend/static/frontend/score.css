@@ -1,4 +1,4 @@
-/* .mediaViewInfo {
+.mediaViewInfo {
 	--web-view-name: Web 1920 – 1;
 	--web-view-id: Web_1920__1;
 	--web-scale-to-fit: true;
@@ -10,7 +10,7 @@
 }
 :root {
 	--web-view-ids: Web_1920__1;
-} */
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -22,6 +22,7 @@
 	width: 100%;
 	height: 120vh;
 	background-color: rgba(175,205,179,1);
+	background-size: 100% 100%;
 	overflow: hidden;
 	--web-view-name: Web 1920 – 1;
 	--web-view-id: Web_1920__1;
@@ -43,7 +44,7 @@
 }
 .Rectangle_1 {
 	mix-blend-mode: lighten;
-	position: absolute;
+	position: relative;
 	overflow: visible;
 	width: 641px;
 	height: 1080px;
@@ -173,7 +174,7 @@
 	color: rgba(10,10,10,1);
 }
 #Anxiety {
-	left: 824px;
+	left: 724px;
 	top: 566px;
 	position: absolute;
 	overflow: visible;
@@ -187,7 +188,7 @@
 	color: rgba(10,10,10,1);
 }
 #Stress_q {
-	left: 1465px;
+	left: 1405px;
 	top: 566px;
 	position: absolute;
 	overflow: visible;
@@ -262,9 +263,9 @@ object-fit: cover;
 	--web-view-ids: Web_1920__1;
 }
 
-#Web_1920__1 {
+#booked {
 	position: relative;
-	width: 1920px;
+	width: 100%;
 	height: 1080px;
 	background-color: rgba(224,229,241,1);
 	overflow: hidden;
