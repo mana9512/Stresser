@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
-
+import { setAlert } from './alert';
 import {
   USER_LOADED,
   USER_LOADING,
@@ -54,6 +54,12 @@ export const login = (username, password) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if(err.response.status === 400){
+
+          dispatch(setAlert("Incorrect Credentials","danger"));
+        
+          
+      }
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: LOGIN_FAIL,
@@ -72,16 +78,33 @@ export const register = (username, password, email, first_name, last_name) => (d
 
   // Request Body
   const body = JSON.stringify({ username, email, password,first_name,last_name });
-  console.log(body);
+
   axios
     .post('/api/auth/register', body, config)
     .then((res) => {
+      
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     })
     .catch((err) => {
+    console.log(err.response.data);
+      if(err.response.status === 400){
+        if(err.response.data["username"][0]){
+         
+          dispatch(setAlert(err.response.data["username"][0],"danger"));
+        }
+        if(err.response.data["email"][0]){
+         
+          dispatch(setAlert(err.response.data["email"][0],"danger"));
+        }
+        if(err.response.data["password"][0]){
+         
+          dispatch(setAlert(err.response.data["password"][0],"danger"));
+        }
+          
+      }
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: REGISTER_FAIL,

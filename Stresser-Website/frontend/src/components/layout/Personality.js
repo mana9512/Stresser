@@ -4,9 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Pagination from "@material-ui/lab/Pagination";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { personalityscore } from "../../actions/personality";
+import { indigo } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Personality = ({ personalityscore, isAuthenticated, personalitypred, user }) => {
+const Personality = ({ personalityscore, isAuthenticated, personalitypred, user, predsuccess }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -31,61 +32,61 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       ["I am the life of the party.", "EXT", 1,undefined],
       ["I don't talk a lot.", "EXT", 1,undefined],
       ["I feel comfortable around people.","EXT", 1,undefined],
-      // ["I keep in the background.","EXT", 1,undefined],
-      // ["I start conversations.","EXT", 1,undefined],
-      // ["I have little to say.","EXT", 1,undefined],
-      // ["I talk to a lot of different people at parties.","EXT", 1,undefined],
-      // ["I don't like to draw attention to myself.","EXT", 1,undefined],
-      // ["I don't mind being the center of attention.","EXT", 1,undefined],
-      // ["I am quiet around strangers.","EXT", 1,undefined],
+      ["I keep in the background.","EXT", 1,undefined],
+      ["I start conversations.","EXT", 1,undefined],
+      ["I have little to say.","EXT", 1,undefined],
+      ["I talk to a lot of different people at parties.","EXT", 1,undefined],
+      ["I don't like to draw attention to myself.","EXT", 1,undefined],
+      ["I don't mind being the center of attention.","EXT", 1,undefined],
+      ["I am quiet around strangers.","EXT", 1,undefined],
     ],
     [
       ["I get stressed out easily.", "EST", 1,undefined],
       ["I am relaxed most of the time.", "EST", 1,undefined],
       ["I worry about things.", "EST", 1,undefined],
-      // ["I seldom feel blue.", "EST", 1,undefined],
-      // ["I am easily disturbed.", "EST", 1,undefined],
-      // ["I get upset easily.", "EST", 1,undefined],
-      // ["I change my mood a lot.", "EST", 1,undefined],
-      // ["I have frequent mood swings.", "EST", 1,undefined],
-      // ["I get irritated easily.", "EST", 1,undefined],
-      // ["I often feel blue.", "EST", 1,undefined],
+      ["I seldom feel blue.", "EST", 1,undefined],
+      ["I am easily disturbed.", "EST", 1,undefined],
+      ["I get upset easily.", "EST", 1,undefined],
+      ["I change my mood a lot.", "EST", 1,undefined],
+      ["I have frequent mood swings.", "EST", 1,undefined],
+      ["I get irritated easily.", "EST", 1,undefined],
+      ["I often feel blue.", "EST", 1,undefined],
     ],
     [
       ["I feel little concern for others.", "AGR", ,undefined],
-      // ["I am interested in people.", "AGR", 1,undefined],
-      // ["I insult people.", "AGR", 1,undefined],
-      // ["I sympathize with others' feelings.", "AGR", 1,undefined],
-      // ["I am not interested in other people's problems.", "AGR", 1,undefined],
-      // ["I have a soft heart.", "AGR", 1,undefined],
-      // ["I am not really interested in others.", "AGR", 1,undefined],
-      // ["I take time out for others.", "AGR", 1,undefined],
-      // ["I feel others' emotions.", "AGR", 1,undefined],
-      // ["I make people feel at ease.", "AGR", 1,undefined]
+      ["I am interested in people.", "AGR", 1,undefined],
+      ["I insult people.", "AGR", 1,undefined],
+      ["I sympathize with others' feelings.", "AGR", 1,undefined],
+      ["I am not interested in other people's problems.", "AGR", 1,undefined],
+      ["I have a soft heart.", "AGR", 1,undefined],
+      ["I am not really interested in others.", "AGR", 1,undefined],
+      ["I take time out for others.", "AGR", 1,undefined],
+      ["I feel others' emotions.", "AGR", 1,undefined],
+      ["I make people feel at ease.", "AGR", 1,undefined]
     ],
     [
       ["I am always prepared.", "CSN", 1,undefined],
-      // ["I leave my belongings around.", "CSN", 1,undefined],
-      // ["I pay attention to details.", "CSN", 1,undefined],
-      // ["I make a mess of things.", "CSN", 1,undefined],
-      // ["I get chores done right away.", "CSN", 1,undefined],
-      // ["I often forget to put things back in their proper place.", "CSN", 1,undefined],
-      // ["I like order.", "CSN", 1,undefined],
-      // ["I shirk my duties.", "CSN", 1,undefined],
-      // ["I follow a schedule.", "CSN", 1,undefined],
-      // ["I am exacting in my work.", "CSN", 1,undefined],
+      ["I leave my belongings around.", "CSN", 1,undefined],
+      ["I pay attention to details.", "CSN", 1,undefined],
+      ["I make a mess of things.", "CSN", 1,undefined],
+      ["I get chores done right away.", "CSN", 1,undefined],
+      ["I often forget to put things back in their proper place.", "CSN", 1,undefined],
+      ["I like order.", "CSN", 1,undefined],
+      ["I shirk my duties.", "CSN", 1,undefined],
+      ["I follow a schedule.", "CSN", 1,undefined],
+      ["I am exacting in my work.", "CSN", 1,undefined],
     ],
     [
       ["I have a rich vocabulary.", "OPN", 1,undefined],
-      // ["I have difficulty understanding abstract ideas.", "OPN", 1,undefined],
-      // ["I have a vivid imagination.", "OPN", 1,undefined],
-      // ["I am not interested in abstract ideas.", "OPN", 1,undefined],
-      // ["I have excellent ideas.", "OPN", 1,undefined],
-      // ["I do not have a good imagination.", "OPN", 1,undefined],
-      // ["I am quick to understand things.", "OPN", 1,undefined],
-      // ["I use difficult words.", "OPN", 1,undefined],
-      // ["I spend time reflecting on things.", "OPN", 1,undefined],
-      // ["I am full of ideas.", "OPN", 1,undefined],
+      ["I have difficulty understanding abstract ideas.", "OPN", 1,undefined],
+      ["I have a vivid imagination.", "OPN", 1,undefined],
+      ["I am not interested in abstract ideas.", "OPN", 1,undefined],
+      ["I have excellent ideas.", "OPN", 1,undefined],
+      ["I do not have a good imagination.", "OPN", 1,undefined],
+      ["I am quick to understand things.", "OPN", 1,undefined],
+      ["I use difficult words.", "OPN", 1,undefined],
+      ["I spend time reflecting on things.", "OPN", 1,undefined],
+      ["I am full of ideas.", "OPN", 1,undefined],
     ],
   ])
  
@@ -115,10 +116,12 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
       questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[3][2][3], questions[3][3][3], questions[3][4][3], questions[3][5][3],questions[3][6][3],questions[3][7][3],questions[3][8][3],
       questions[1][0][3], questions[1][9][3], questions[1][1][3], questions[1][2][3], questions[1][3][3], questions[1][4][3], questions[1][5][3],questions[1][6][3],questions[1][7][3],questions[1][8][3],
       questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[0][2][3], questions[0][3][3], questions[0][4][3], questions[0][5][3],questions[0][6][3],questions[0][7][3],questions[0][8][3],
-      questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],);
+      questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],history);
   };
 
-  
+  if(predsuccess){
+    return <Redirect to='/predictedpersonality'/>
+  }
   
 
   return (
@@ -241,12 +244,14 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user 
 Personality.propTypes = {
   personalityscore: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  personalitypred: PropTypes.string
+  personalitypred: PropTypes.string,
+  predsuccess: PropTypes.bool
 };
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  personalitypred:state.personality.personalitypred
+  personalitypred:state.personality.personalitypred,
+  predsuccess:state.personality.predsuccess
 });
 
-export default connect(mapStateToProps, { personalityscore })(Personality);
+export default connect(mapStateToProps, { personalityscore })(withRouter(Personality));

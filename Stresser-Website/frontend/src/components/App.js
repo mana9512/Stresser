@@ -46,8 +46,6 @@ export class App extends Component {
               <Route exact path="/question" component={Question} />
               <Route exact path="/" component={Landing} />
               
-              
-
 
             </Switch>
             <Footer />

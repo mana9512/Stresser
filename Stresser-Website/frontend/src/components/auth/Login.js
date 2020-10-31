@@ -56,7 +56,7 @@ const Login = ({ login, isAuthenticated }) => {
                 autoComplete="off"
               >
                 <div className="form-group">
-                  <label for="username">
+                  <label htmlFor="username">
                     <i className="fas fa-envelope"></i>
                   </label>
                   <input
@@ -69,7 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="password">
+                  <label htmlFor="password">
                     <i className="fas fa-lock"></i>
                   </label>
                   <input
@@ -88,7 +88,7 @@ const Login = ({ login, isAuthenticated }) => {
                     id="remember-me"
                     className="agree-term"
                   />
-                  <label for="remember-me" className="label-agree-term">
+                  <label htmlFor="remember-me" className="label-agree-term">
                     <span>
                       <span></span>
                     </span>

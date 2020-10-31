@@ -24,11 +24,9 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password !== password2) {
-      setAlert("Password dont match", "danger");
-    }  else {
+    
       return register(username, password, email,first_name,last_name);
-    }
+    
   };
 
   if (isAuthenticated) {
@@ -52,7 +50,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                 autoComplete="off"
               >
                 <div className="form-group">
-                  <label for="username">
+                  <label htmlFor="username">
                     <i className="fas fa-user-friends"></i>
                   </label>
                   <input
@@ -65,7 +63,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="first_name">
+                  <label htmlFor="first_name">
                     <i className="fas fa-user-friends"></i>
                   </label>
                   <input
@@ -78,7 +76,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="last_name">
+                  <label htmlFor="last_name">
                     <i className="fas fa-user-friends"></i>
                   </label>
                   <input
@@ -92,7 +90,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                 </div>
 
                 <div className="form-group">
-                  <label for="email">
+                  <label htmlFor="email">
                     <i className="fas fa-envelope"></i>
                   </label>
                   <input
@@ -105,7 +103,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="password">
+                  <label htmlFor="password">
                     <i className="fas fa-lock"></i>
                   </label>
                   <input
@@ -118,7 +116,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="password2">
+                  <label htmlFor="password2">
                     <i className="fas fa-lock"></i>
                   </label>
                   <input
