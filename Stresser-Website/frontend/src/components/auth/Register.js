@@ -24,9 +24,12 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    
+    if(password!==password2){
+      setAlert("Password arent same!","danger")
+    }
+    else{
       return register(username, password, email,first_name,last_name);
-    
+    }
   };
 
   if (isAuthenticated) {
@@ -60,6 +63,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={username}
                     placeholder="Username"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -73,6 +77,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={first_name}
                     placeholder="First Name"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -86,6 +91,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={last_name}
                     placeholder="Last Name"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
 
@@ -100,6 +106,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={email}
                     placeholder="Your Email"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -113,6 +120,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={password}
                     placeholder="Password"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -126,6 +134,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     value={password2}
                     placeholder="Repeat your password"
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
                 <div className="form-group form-button">

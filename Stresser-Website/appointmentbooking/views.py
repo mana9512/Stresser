@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 # Create your views here.
-from appointmentbooking.models import Booking, TimeSlot, Specialist
+from appointmentbooking.models import  TimeSlot, Specialist
 from rest_framework import viewsets, permissions, status
-from .serializers import BookingSerializer, SpecialistSerializer, TimeSlotSerializer
+from .serializers import  SpecialistSerializer, TimeSlotSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from datetime import datetime
@@ -34,14 +34,15 @@ class TimeSlotViewSet(APIView):
 
             created = TimeSlot.objects.filter(slot=request.data['slot'],date=request.data['date'],specialist=request.data['specialist']).exists()
            
-
+            print(request.data['user']['email'])
             if not created:
                 newobj=TimeSlotSerializer(data={ 'slot':request.data['slot'],'date':request.data['date'],'specialist':request.data['specialist'],'availability':False })
                 if newobj.is_valid():
                     # print(newobj.data)
                     newobj.save()
-                    send_mail('Appointment Reminder', 'Your Appointment has been scheduled with '+str(newobj.validated_data['specialist'])+' on Date:'+str(newobj.validated_data['date'])+'at time'+str(newobj.validated_data['slot']), 'mana999526@gmail.com',['manashreepatel28@gmail.com'], fail_silently=False)
-                    BookingViewSet.post(self,request,newobj.data['id'])
+                    
+                    # send_mail('Appointment Reminder', 'Your Appointment has been scheduled with '+str(newobj.validated_data['specialist'])+' on Date:'+str(newobj.validated_data['date'])+'at time'+str(newobj.validated_data['slot']), 'mana999526@gmail.com',['manashreepatel28@gmail.com'], fail_silently=False)
+                    # BookingViewSet.post(self,request,newobj.validated_data['user']['id'])
                    
                     
                     return Response(newobj.data,status=status.HTTP_201_CREATED)
@@ -52,22 +53,22 @@ class TimeSlotViewSet(APIView):
                 return Response({"Slot not Available"})
         return Response(checkavailability.errors,status=status.HTTP_400_BAD_REQUEST)
 
-class BookingViewSet(APIView):
-    def get(self, request):
-        bookedobj=Booking.objects.all()
-        bookedobjserialize=BookingSerializer(bookedobj,many=True)
-        return Response(bookedobjserialize.data)
+# class BookingViewSet(APIView):
+#     def get(self, request):
+#         bookedobj=Booking.objects.all()
+#         bookedobjserialize=BookingSerializer(bookedobj,many=True)
+#         return Response(bookedobjserialize.data)
 
-    def post(self, request, id):
-        print(request.data)
-        print(datetime.now())
-        print(request.data['user'])
-        print(id)
-        bookedobjserialize=BookingSerializer(data={'user':request.data['user'], 'timestamp':datetime.now(), 'timeslot':id})
-        if bookedobjserialize.is_valid():
-            bookedobjserialize.save()
-            return Response(bookedobjserialize.data,status=status.HTTP_201_CREATED)
-        return Response(bookedobjserialize.errors,status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, user):
+#         print(request.data)
+       
+        
+     
+#         bookedobjserialize=BookingSerializer(data={'user':user, 'timestamp':datetime.now(), 'timeslot':id})
+#         if bookedobjserialize.is_valid():
+#             bookedobjserialize.save()
+#             return Response(bookedobjserialize.data,status=status.HTTP_201_CREATED)
+#         return Response(bookedobjserialize.errors,status=status.HTTP_400_BAD_REQUEST)
 
 class SpecialistViewSet(APIView):
     def get(self, request):

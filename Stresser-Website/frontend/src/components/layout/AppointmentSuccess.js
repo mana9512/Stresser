@@ -1,32 +1,16 @@
 import React, { Fragment } from 'react'
 import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const AppointmentSuccess = () => {
+const AppointmentSuccess = ({availability}) => {
     return (
         <Fragment>
-            {/* <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>Thank You</h1>
-            <h4>Your appointment has been Scheduled.</h4>
-            <Link to="/">Home</Link>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/> */}
+           
             <div id="booked">
                 <img id="img" src={"/static/frontend/img/img.png"} srcset={"/static/frontend/img/img.png 1x, /static/frontend/img/img@2x.png 2x" }/>
                 <div id="Thank_you_for_using_our_websit">
-                    <span>Thank you for using our website.<br />Your Appointment has been scheduled on<br /><br /> Date: 24-10-2020  and at <br />Time: 5:10pm.<br /><br />Also for the same an email has been sent to you!</span><br/>
+                    <span>Thank you for using our website.<br />Your Appointment has been scheduled on<br /><br /> Date: {availability['slot']}  and at <br />Time: {availability['time']}.<br /><br />Also for the same an email has been sent to you!</span><br/>
 	            </div>
             </div>
             
@@ -34,5 +18,12 @@ const AppointmentSuccess = () => {
        
     )
 }
-
-export default AppointmentSuccess
+AppointmentSuccess.propTypes = {
+   availability: PropTypes.object.isRequired,
+  };
+  
+  const mapStateToProps = (state) => ({
+   availability: state.appointment.availability
+  });
+  
+export default connect(mapStateToProps, { })(AppointmentSuccess);

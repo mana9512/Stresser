@@ -14,7 +14,7 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
             <div className="menu">
               <Link to="/bookappointment" className="navMenuItem float">Appointment Booking</Link>
               <Link to="/question" className="navMenuItem float">DASS Test</Link>
-              <Link to="/checkpersonalitytype" className="navMenuItem float">Personality Types</Link>
+              <Link to="/checkpersonalitytype" className="navMenuItem float">Personality Test</Link>
               <div className="navMenuItem float">About</div>
             </div>
           </div>
@@ -26,9 +26,9 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
   </Link>} 
        
            
-            <Link to="/register" className="navMenuItem">
+            {isAuthenticated?"":<Link to="/register" className="navMenuItem">
               Register
-            </Link>
+            </Link>}
           </div>
         </div>
       </div>

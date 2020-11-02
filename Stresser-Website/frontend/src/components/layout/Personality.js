@@ -24,7 +24,9 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setSelected(undefined)
-    setPage(value);
+
+    setPage(value)
+
   };
   const [selected, setSelected] = React.useState();
   const [questions,setQuestions] = useState([
@@ -93,8 +95,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
   
 
   const onChange = (page, index, value, e) => {
-    e.preventDefault();
-    let i = 0;
+      e.preventDefault();
+      let i = 0;
     // for (i = 0; i < questions[page].length; i++) {
       questions[page][index][3]=value
       setQuestions(questions);

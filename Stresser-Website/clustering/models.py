@@ -54,3 +54,10 @@ class pclass(models.Model):
     Opn7=models.IntegerField()
     Opn8=models.IntegerField()
     Opn9=models.IntegerField()
+
+class prediction(models.Model):
+    # user = models.OneToOneField(
+    #     User,
+    #     on_delete=models.CASCADE,
+    # )
+    ypred=models.IntegerField()

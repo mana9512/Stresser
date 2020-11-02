@@ -8,7 +8,7 @@ import {
 } from '@material-ui/pickers';
 
 //Redux
-import { Link, Redirect ,useHistory } from "react-router-dom";
+import { Link, Redirect ,useHistory,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { checkavailability } from "../../actions/appointment";
@@ -17,7 +17,7 @@ import { setAlert } from "../../actions/alert";
 
 var appointmentDate="";
 
-const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}) => {
+const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert, history}) => {
     if(!isAuthenticated){
         setAlert("You need to autheticate prior to book an appointment","danger")
     }
@@ -53,12 +53,12 @@ const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert}
     
       const onSubmit = (e) => {
         e.preventDefault();
-        return checkavailability(user['id'], slot, appointmentDate, doctor)
+        return checkavailability(user, slot, appointmentDate, doctor,history)
       };
-      if(booked){
-        return <Redirect to="/bookedsuccess" />;
+    //   if(booked){
+    //     return <Redirect to="/bookedsuccess" />;
         // history.push('/bookedsuccess')
-      }
+    //   }
      
 
     return (
@@ -252,5 +252,5 @@ Appointment.propTypes = {
     booked:state.appointment.booked
   });
   
-  export default connect(mapStateToProps, { checkavailability, setAlert })(Appointment);
+  export default connect(mapStateToProps, { checkavailability, setAlert })(withRouter(Appointment));
 

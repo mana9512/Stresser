@@ -15,15 +15,15 @@ class TimeSlot(models.Model):
     def __str__(self):
         return "%s Availability" % self.availability
 
-class Booking(models.Model):
-    timeslot = models.OneToOneField(
-        TimeSlot,
-        on_delete=models.CASCADE,
-    )
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-    )
-    timestamp = models.DateTimeField(auto_now_add=True)
+# class Booking(models.Model):
+#     timeslot = models.OneToOneField(
+#         TimeSlot,
+#         on_delete=models.CASCADE,
+#     )
+#     user = models.ForeignKeyField(
+#         User,
+#         on_delete=models.CASCADE,
+#     )
+#     timestamp = models.DateTimeField(auto_now_add=True)
 
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import { returnErrors } from './messages';
 
+
 import {
     BOOKED_FAIL,
     BOOKED_SUCCESS,
@@ -9,7 +10,7 @@ import {
 } from './types';
 
 //SAVE GENERATED SCORE
-export const checkavailability = (user, slot, date, specialist) => (dispatch) => {
+export const checkavailability = (user, slot, date, specialist,history) => (dispatch) => {
     // Headers
     const config = {
       headers: {
@@ -30,12 +31,13 @@ export const checkavailability = (user, slot, date, specialist) => (dispatch) =>
           //   type:SET_ALERT,
           //   payload:res.data[0]
           // })
-          dispatch(setAlert(res.data[0],"danger"));
+          return dispatch(setAlert(res.data[0],"danger"));
         }
         dispatch({
           type: BOOKED_SUCCESS,
           payload: res.data,
         });
+        history.replace('/bookedsuccess')
       })
       .catch((err) => {
         console.log(err);

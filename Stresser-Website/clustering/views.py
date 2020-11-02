@@ -41,6 +41,12 @@ def calculate_score(request):
         print(df_tr)
         
         y_pred = mdl.predict(df_tr)
+        x = {'ypred' : y_pred}
+
+        predictionobjserialize=predictionSerializers(data=x)
+        if predictionobjserialize.is_valid():
+            predictionobjserialize.save()
+        
         
         return Response(y_pred)
         #return Response(scoreobjserialize.errors,status=status.HTTP_400_BAD_REQUEST)
