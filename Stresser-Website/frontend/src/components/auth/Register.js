@@ -44,7 +44,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
         <div className="container">
           <div className="signup-content">
             <div className="signup-form">
-              <h2 className="form-title">Sign up</h2>
+              <h2 className="form-title">Register</h2>
               <form
                 method="POST"
                 className="register-form"

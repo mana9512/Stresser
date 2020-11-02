@@ -8,7 +8,7 @@ import { Link, Redirect,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { personalityscore } from "../../actions/personality";
 import { indigo } from "@material-ui/core/colors";
-
+import { setAlert } from '../../actions/alert';
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > * + *": {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Personality = ({ personalityscore, isAuthenticated, personalitypred, user, predsuccess }) => {
+const Personality = ({ personalityscore, isAuthenticated, personalitypred, user, setAlert }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -110,7 +110,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
 
   const Submit = (e) => {
     // if(!isAuthenticated){
-    //     return setAlert("You need to authenticate prior to take the test","danger")
+        // return setAlert("You need to authenticate prior to take the test","danger")
     // }
     e.preventDefault();
     
@@ -121,9 +121,13 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
       questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],history);
   };
 
-  if(predsuccess){
-    return <Redirect to='/predictedpersonality'/>
+  if (!isAuthenticated) {
+    console.log("test1");
+    setAlert("Please Login to take the test","danger")
+     return <Redirect to="/login" />;
+    //  setAlert("Please Login to take the test","danger")
   }
+
   
 
   return (
@@ -247,13 +251,14 @@ Personality.propTypes = {
   personalityscore: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   personalitypred: PropTypes.string,
-  predsuccess: PropTypes.bool
+  setAlert: PropTypes.func.isRequired,
+  
 };
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
   personalitypred:state.personality.personalitypred,
-  predsuccess:state.personality.predsuccess
+  
 });
 
-export default connect(mapStateToProps, { personalityscore })(withRouter(Personality));
+export default connect(mapStateToProps, { personalityscore, setAlert })(withRouter(Personality));

@@ -11,6 +11,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { savescore } from "../../actions/das";
 import PropTypes from "prop-types";
+import { setAlert } from '../../actions/alert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Question = ({ savescore, success, isAuthenticated, user, history }) => {
+const Question = ({ savescore, success, isAuthenticated, user, history, setAlert }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -46,21 +47,21 @@ const Question = ({ savescore, success, isAuthenticated, user, history }) => {
         ["I experienced breathing difficulty (e.g. excessively rapid breathing,breathlessness in the absence of physical exertion)", "a", 0,undefined],
         ["I found it difficult to work up the initiative to do things", "d", 0,undefined],
         ["I tended to over-react to situations", "s", 0,undefined],
-        ["I experienced trembling (e.g. in the hands)", "a",0,undefined],
-        ["I felt that I was using a lot of nervous energy", "s",0,undefined],
-        ["I was worried about situations in which I might panic and make a fool of myself", "a", 0,undefined],
-        ["I felt that I had nothing to look forward to", "d", 0,undefined],
-        ["I found myself getting agitated", "s",0,undefined],
-        ["I found it difficult to relax", "s", 0,undefined],
-        ["I felt down-hearted and blue", "d", 0,undefined],
-        ["I was intolerant of anything that kept me from getting on with what I was doing", "s",0,undefined],
-        ["I felt I was close to panic", "d",0,undefined],
-        ["I was unable to become enthusiastic about anything", "d",0,undefined],
-        ["I felt I wasn’t worth much as a person", "d",0,undefined],
-        ["I felt that I was rather touchy ", "s", 0,undefined],
-        ["I was aware of the action of my heart in the absence of physical exertion (e.g. sense of heart rate increase, heart missing a beat)", "a", 0,undefined],
-        ["I felt scared without any good reason", "a",0,undefined],
-        ["I felt that life was meaningless", "d", 0,undefined]
+        // ["I experienced trembling (e.g. in the hands)", "a",0,undefined],
+        // ["I felt that I was using a lot of nervous energy", "s",0,undefined],
+        // ["I was worried about situations in which I might panic and make a fool of myself", "a", 0,undefined],
+        // ["I felt that I had nothing to look forward to", "d", 0,undefined],
+        // ["I found myself getting agitated", "s",0,undefined],
+        // ["I found it difficult to relax", "s", 0,undefined],
+        // ["I felt down-hearted and blue", "d", 0,undefined],
+        // ["I was intolerant of anything that kept me from getting on with what I was doing", "s",0,undefined],
+        // ["I felt I was close to panic", "d",0,undefined],
+        // ["I was unable to become enthusiastic about anything", "d",0,undefined],
+        // ["I felt I wasn’t worth much as a person", "d",0,undefined],
+        // ["I felt that I was rather touchy ", "s", 0,undefined],
+        // ["I was aware of the action of my heart in the absence of physical exertion (e.g. sense of heart rate increase, heart missing a beat)", "a", 0,undefined],
+        // ["I felt scared without any good reason", "a",0,undefined],
+        // ["I felt that life was meaningless", "d", 0,undefined]
 
     ]);
 
@@ -109,10 +110,13 @@ const Question = ({ savescore, success, isAuthenticated, user, history }) => {
 
 
     };
-    // if(success)
-    // {
-    //     return <Redirect to="/scoredisplay" />;
-    // }
+    if (!isAuthenticated) {
+        console.log("test1");
+        setAlert("Please Login to take the test","danger");
+        return <Redirect to="/login" />;
+      }
+    
+    
 
     return (
         <Fragment>
@@ -234,7 +238,8 @@ const Question = ({ savescore, success, isAuthenticated, user, history }) => {
 Question.propTypes = {
     savescore: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
-    success: PropTypes.bool
+    success: PropTypes.bool,
+    setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -243,4 +248,4 @@ const mapStateToProps = (state) => ({
     success: state.das.success
 });
 
-export default connect(mapStateToProps, { savescore })(withRouter(Question));
+export default connect(mapStateToProps, { savescore, setAlert })(withRouter(Question));

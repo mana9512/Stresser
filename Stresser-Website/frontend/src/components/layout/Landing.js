@@ -84,14 +84,18 @@ const Landing = () => {
                 <div className="testimonialText">
                     Curious how accurate we are about you?<br /><span style={{color: "rgba(0,185,255,1)"}}>Take the Test</span> and find out.
 		        </div>
-                <div className="testimonialsBlock row" style={{width: "80%",margin: "60px auto"}}>
+                <div className="testimonialsBlock " style={{width: "80%",margin: "60px auto"}}>
                     <div className="row" style={{width: "100%",marginLeft: "560px",marginRight:"460px"}}>
                     <div className="col-lg-3">
                         <div className="testimonialInlineBlock" style={{borderTop: "15px solid rgba(227,55,56,1)"}}>
                             <img src={"/static/frontend/img/quotes.png"} className="quotes" />
                             <div className="testimonialContent">
-                                Lorem ipsum dolor sit amet,consectetur adipiscing elit.Nunc dapibus lacus sit ametelit euismod aliquet at at ligula.
+                                This site predicted my depression and helped me cure my anxiety problems. They helped me contact the right doctor who                      cured my problems.
 					        </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                             <div className="testimonialImageBox">
                                 <img src={"/static/frontend/img/testi-1.png"} />
 
@@ -103,8 +107,12 @@ const Landing = () => {
                         <div className="testimonialInlineBlock" style={{borderTop: "15px solid rgba(245,131,32,1)"}}>
                             <img src={"/static/frontend/img/quotes.png"} className="quotes" />
                             <div className="testimonialContent">
-                                Lorem ipsum dolor sit amet,consectetur adipiscing elit.Nunc dapibus lacus sit ametelit euismod aliquet at at ligula.
+                                I am happy to go person but this site predicted me as stressed person. Worst prediction ever! 
 					        </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                             <div className="testimonialImageBox">
                                 <img src={"/static/frontend/img/testi-2.png" }/>
 
@@ -116,8 +124,12 @@ const Landing = () => {
                         <div className="testimonialInlineBlock" style={{borderTop: "15px solid rgba(253,184,19,1)"}}>
                             <img src={"/static/frontend/img/quotes.png"} className="quotes" />
                             <div className="testimonialContent">
-                                Lorem ipsum dolor sit amet,consectetur adipiscing elit.Nunc dapibus lacus sit ametelit euismod aliquet at at ligula.
+                            This site has a friendly UI and I'm really proud of the developers. Kudos to them!
 					        </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                             <div className="testimonialImageBox">
                                 <img src={"/static/frontend/img/testi-3.png" }/>
 
