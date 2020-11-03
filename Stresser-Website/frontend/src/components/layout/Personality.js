@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Personality = ({ personalityscore, isAuthenticated, personalitypred, user, setAlert }) => {
+const Personality = ({ personalityscore, isAuthenticated, personalitypred, user, setAlert, history }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -118,7 +118,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
       questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[3][2][3], questions[3][3][3], questions[3][4][3], questions[3][5][3],questions[3][6][3],questions[3][7][3],questions[3][8][3],
       questions[1][0][3], questions[1][9][3], questions[1][1][3], questions[1][2][3], questions[1][3][3], questions[1][4][3], questions[1][5][3],questions[1][6][3],questions[1][7][3],questions[1][8][3],
       questions[3][0][3], questions[3][9][3], questions[3][1][3], questions[0][2][3], questions[0][3][3], questions[0][4][3], questions[0][5][3],questions[0][6][3],questions[0][7][3],questions[0][8][3],
-      questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3],history);
+      questions[4][0][3], questions[4][9][3], questions[4][1][3], questions[4][2][3], questions[4][3][3], questions[4][4][3], questions[4][5][3],questions[4][6][3],questions[4][7][3],questions[4][8][3], history);
   };
 
   if (!isAuthenticated) {

@@ -32,19 +32,19 @@ const Landing = () => {
                         </div>
 
                         <div className="col-lg-6 col-sm-6 textCol">
-                            <div className="contentHeading">Understand Others</div>
-                            <div className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed aliquet lectus velit, vel ultricies nulla pretium vel. Nullapellentesque risus eget facilisis eleifend. Aenean blanditdiam at sollicitudin rutrum. Cras sed mattis sapien.Praesent lacinia suscipit elit, in condimentum ligulavenenatis ac. Sed quis cursus odio.
+                            <div className="contentHeading">DAS Test</div>
+                            <div className="content">A questionaire is prepared which calculates Depression, Anxiety and Stress score based on mcq answered.A User can take test to get appropiate solution based on their score generated.
 					        </div>
-                            <button style={{backgroundColor: "rgba(227,55,56,1)"}}>Read About Types</button>
+                            <Link to="/question"><button style={{backgroundColor: "rgba(227,55,56,1)"}}>DAS Test</button></Link>
                         </div>
                     </div>
                 
                     <div className="sectionBlock row">
                         <div className="col-lg-6 col-sm-6 textCol">
-                            <div className="contentHeading">Get a Roadmap of Success</div>
-                            <div className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed aliquet lectus velit, vel ultricies nulla pretium vel. Nullapellentesque risus eget facilisis eleifend. Aenean blanditdiam at sollicitudin rutrum. Cras sed mattis sapien.Praesent lacinia suscipit elit, in condimentum ligulavenenatis ac. Sed quis cursus odio.
+                            <div className="contentHeading">Find your personality type</div>
+                            <div className="content">A user need to take personality test to find out his/her personality type.Test comprises of 50 multiple choice questions and user needs to answers each and every question to get the results.Take the test to find out how accurate we are, at predicting your personality!!
 					        </div>
-                            <button style={{backgroundColor: "rgba(245,131,32,1)"}}>Get Your Premium Profile</button>
+                            <button style={{backgroundColor: "rgba(245,131,32,1)"}}>Personality Test</button>
                         </div>
 
                         <div className="col-6 imageCol">
@@ -60,10 +60,10 @@ const Landing = () => {
                         </div>
 
                         <div className="col-lg-6 col-sm-6 textCol">
-                            <div className="contentHeading">Join Our Community</div>
-                            <div className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed aliquet lectus velit, vel ultricies nulla pretium vel. Nullapellentesque risus eget facilisis eleifend. Aenean blanditdiam at sollicitudin rutrum. Cras sed mattis sapien.Praesent lacinia suscipit elit, in condimentum ligulavenenatis ac. Sed quis cursus odio.
+                            <div className="contentHeading">Book An Appointment</div>
+                            <div className="content">You can also book an appointment with a well known specialist in case you need expert advice or want to talk about the problems or difficulties you are facing.
 					</div>
-                            <button style={{backgroundColor: "rgba(253,184,19,1)"}}>Enter Discussion</button>
+                            <Link to='/bookappointment'><button style={{backgroundColor: "rgba(253,184,19,1)"}}>Book An Appointment</button></Link>
                         </div>
                     </div>
                 </div>

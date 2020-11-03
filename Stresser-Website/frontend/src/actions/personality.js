@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import { returnErrors } from './messages';
 
 import {
@@ -26,6 +27,8 @@ export const personalityscore = (
       Est1,Est10,Est2,Est3,Est4,Est5,Est6,Est7,Est8,Est9,
       Ext1,Ext10,Ext2,Ext3,Ext4,Ext5,Ext6,Ext7,Ext8,Ext9,
       Opn1,Opn10,Opn2,Opn3,Opn4,Opn5,Opn6,Opn7,Opn8,Opn9});
+
+      console.log(body);
    
     axios
       .post('/api/calculate_score/', body, config)
@@ -35,10 +38,13 @@ export const personalityscore = (
           type: PERSCORE_SUCCESS,
           payload: res.data[0],
         });
-        // history.replace("/predictedpersonality");
+        history.replace("/predictedpersonality");
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status==500){
+          dispatch(setAlert("You are required to attempt all questions","danger"))
+        }
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
           type: PERSCORE_FAIL,

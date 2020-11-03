@@ -199,7 +199,7 @@ body {
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 40px;
 	margin-bottom: 50px;
 	color: rgba(45,45,45,1);
 }
@@ -233,8 +233,8 @@ body {
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 25px;
-	color: rgba(45,45,45,1);
+	font-size: 35px;
+	color: rgba(45,45,45,1); 
 }
 .sectionBlock .textCol .content {
 	text-align: left;
@@ -242,7 +242,7 @@ body {
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 25px;
 	color: rgba(45,45,45,1);
 }
 .sectionBlock .textCol button {
@@ -454,8 +454,8 @@ body {
 .test-intro-block {
 	display: inline-block;
 	padding: 20px;
-	height: 200px;
-	width: 250px;
+	height: 270px;
+	width: 350px;
 	margin: 20px;
 	filter: drop-shadow(0px 0px 20px rgba(104, 104, 104, 0.502));
 	border-radius: 8px;
@@ -463,8 +463,8 @@ body {
 	overflow: hidden;
 }
 .test-intro-block img {
-	width: 80px;
-	height: auto;
+	width: 150px;
+	height: 160px;
 	object-fit: cover;
 }
 .test-intro-block h2 {

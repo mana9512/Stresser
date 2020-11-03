@@ -80,9 +80,9 @@ const Question = ({ savescore, success, isAuthenticated, user, history, setAlert
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
     const [userScores, setUserScores] = useState({
-        d: 0,
-        a: 0,
-        s: 0,
+        d: undefined,
+        a: undefined,
+        s: undefined,
     })
 
 
@@ -128,23 +128,23 @@ const Question = ({ savescore, success, isAuthenticated, user, history, setAlert
                 <div className="test-intro row" style={{ width: "100%", margin: "auto" }}>
                     <div className="col-xl-4 col-lg-4 col-md-1 col-sm-1">
                         <div className="test-intro-block" style={{ borderBottom: "15px solid rgba(227,55,56,1)" }}>
-                            <img src={"/static/frontend/img/clock.png"} />
+                            <img src={"/static/frontend/img/d.jpg"} />
                             <h2>Depression</h2>
-                            <h4>Take less than 12 minutes</h4>
+                            <h4>Do you feel depreesed or suicidal?</h4>
                         </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-1 col-sm-1">
                         <div className="test-intro-block" style={{ borderBottom: "15px solid rgba(245,131,32,1)" }}>
-                            <img src={"/static/frontend/img/clock.png/"} />
+                            <img src={"/static/frontend/img/A.jpg/"} />
                             <h2>Anxiety</h2>
-                            <h4>Take less than 12 minutes</h4>
+                            <h4>People with certain personality types are more prone to anxiety disorders than others are</h4>
                         </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-1 col-sm-1">
                         <div className="test-intro-block" style={{ borderBottom: "15px solid rgba(253,184,19,1)" }}>
-                            <img src={"/static/frontend/img/clock.png"} />
+                            <img src={"/static/frontend/img/S.jpg"} />
                             <h2>Stress</h2>
-                            <h4>Take less than 12 minutes</h4>
+                            <h4>Stress is a feeling of emotional or physical tension.hoihohohvsodhvosdov</h4>
                         </div>
                     </div>
                 </div>

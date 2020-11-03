@@ -9,7 +9,7 @@ from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 from . models import pclass
-from . serializers import pclassSerializers
+from . serializers import pclassSerializers,predictionSerializers
 import pickle
 import json
 import numpy as np

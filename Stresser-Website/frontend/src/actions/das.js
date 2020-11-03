@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
 
+import { setAlert } from './alert';
 import {
     SCORE_FAIL,
     SCORE_SUCCESS
@@ -27,7 +28,10 @@ export const savescore = (user, Dscore, Ascore, Sscore, history) => (dispatch) =
         history.replace("/scoredisplay");
       })
       .catch((err) => {
-        console.log(err);
+   
+        if(err.response.status==500){
+          dispatch(setAlert("You are required to attempt all questions","danger"))
+        }
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
           type: SCORE_FAIL,
