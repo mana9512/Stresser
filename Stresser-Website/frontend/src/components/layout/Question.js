@@ -80,9 +80,9 @@ const Question = ({ savescore, success, isAuthenticated, user, history, setAlert
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
     const [userScores, setUserScores] = useState({
-        d: undefined,
-        a: undefined,
-        s: undefined,
+        d: 0,
+        a: 0,
+        s: 0,
     })
 
 
@@ -163,31 +163,31 @@ const Question = ({ savescore, success, isAuthenticated, user, history, setAlert
                                 <div className="col-12"><h2>Question {activeStep + 1} . {tutorialSteps[activeStep][0]}</h2></div><br />
                                 <div className="col-7">
                                     <input type="radio" name={"option" + activeStep} id={activeStep + "_0"} value={0} checked={tutorialSteps[activeStep][3] == 0} onChange={(e) => onChange(activeStep, 0, e)} />
-                                    <label htmlFor={activeStep + "_0"}>NEVER</label>
-                                    <div className="check"></div>
+                                    <label className={ tutorialSteps[activeStep][3] !==0 ? "":"selectedlabel"} htmlFor={activeStep + "_0"}>NEVER</label>
+                                    <div className={tutorialSteps[activeStep][3] !==0 ? "check":"selectedcheck"}></div>
                                 </div>
                                 <br />
                                 <br />
                                 <div className="col-7">
                                     <input type="radio" name={"option" + activeStep} id={activeStep + "_1"} value={1} checked={tutorialSteps[activeStep][3] == 1} onChange={(e) => onChange(activeStep, 1, e)} />
-                                    <label htmlFor={activeStep + "_1"}>SOMETIMES</label>
-                                    <div className="check"></div>
+                                    <label className={tutorialSteps[activeStep][3] !==1 ? "":"selectedlabel"} htmlFor={activeStep + "_1"}>SOMETIMES</label>
+                                    <div className={tutorialSteps[activeStep][3] !==1 ? "check":"selectedcheck"}></div>
                                 </div>
                                 <br />
                                 <br />
 
                                 <div className="col-7">
                                     <input type="radio" name={"option" + activeStep} id={activeStep + "_2"} value={2} checked={tutorialSteps[activeStep][3] == 2} onChange={(e) => onChange(activeStep, 2, e)} />
-                                    <label htmlFor={activeStep + "_2"}>OFTEN</label>
-                                    <div className="check"></div>
+                                    <label className={ tutorialSteps[activeStep][3] !==2 ? "":"selectedlabel"} htmlFor={activeStep + "_2"}>OFTEN</label>
+                                    <div className={tutorialSteps[activeStep][3] !==2 ? "check":"selectedcheck"}></div>
                                 </div>
                                 <br />
                                 <br />
 
                                 <div className="col-7">
                                     <input type="radio" name={"option" + activeStep} id={activeStep + "_3"} value={3} checked={tutorialSteps[activeStep][3] == 3} onChange={(e) => onChange(activeStep, 3, e)} />
-                                    <label htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
-                                    <div className="check"></div>
+                                    <label className={tutorialSteps[activeStep][3] !==3 ? "":"selectedlabel"}  htmlFor={activeStep + "_3"}>ALMOST ALWAYS</label>
+                                    <div className={tutorialSteps[activeStep][3] !==3 ? "check":"selectedcheck"}></div>
                                 </div>
                                 <br />
                                 <br />

@@ -5,6 +5,12 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
+  const chatopen=()=>{
+    console.log('chat');
+    console.log(window.location.href);
+    window.location.href="http://127.0.0.1:3000/"
+    
+  }
   return (
     <Fragment>
       <div className="headerBar">
@@ -15,6 +21,8 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
               <Link to="/bookappointment" className="navMenuItem float">Appointment Booking</Link>
               <Link to="/question" className="navMenuItem float">DASS Test</Link>
               <Link to="/checkpersonalitytype" className="navMenuItem float">Personality Test</Link>
+              <button  onClick={chatopen}  >Chat</button>
+
               <div className="navMenuItem float">About</div>
             </div>
           </div>
@@ -39,6 +47,7 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
 Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = (state) => ({

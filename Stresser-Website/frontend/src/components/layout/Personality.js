@@ -55,7 +55,7 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
       ["I often feel blue.", "EST", 1,undefined],
     ],
     [
-      ["I feel little concern for others.", "AGR", ,undefined],
+      ["I feel little concern for others.", "AGR", 1,undefined],
       ["I am interested in people.", "AGR", 1,undefined],
       ["I insult people.", "AGR", 1,undefined],
       ["I sympathize with others' feelings.", "AGR", 1,undefined],
@@ -96,12 +96,13 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
 
   const onChange = (page, index, value, e) => {
       e.preventDefault();
-      let i = 0;
+    
     // for (i = 0; i < questions[page].length; i++) {
+      
       questions[page][index][3]=value
       setQuestions(questions);
       setSelected(value);
-      console.log(questions[page][index][3]);
+      console.log(questions);
     // }
     
   
@@ -147,18 +148,18 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
                   </h2>
                 </div>
                 <br />
-                <div className="col-7">
+                <div key={i+"_"+page+ "_0"} className="col-7">
                   <input
                     type="radio"
                     name={"option" + i}
-                    id={i+"_"+page + "_0"}
+                    id={i+"_"+page+ "_0"}
                     
                     value={1} 
                     checked={questions[page - 1][i][3] == 1}
                     onChange={(e) => onChange(page - 1, i, 1, e)}
                   />
-                  <label htmlFor={i +"_"+page + "_0"}>DISAGREE</label>
-                  <div className="check"></div>
+                  <label className={ val[3] !==1 ? "":"selectedlabel"} htmlFor={i +"_"+page + "_0"}>DISAGREE</label>
+                  <div className={ val[3] !==1 ? "check":"selectedcheck"}></div>
                 </div>
                 <br />
                 <br />
@@ -172,8 +173,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
                     checked={questions[page - 1][i][3] == 2}
                     onChange={(e) => onChange(page - 1, i, 2, e)}
                   />
-                  <label htmlFor={i +"_"+page + "_1"}>SLIGHTLY DISAGREE</label>
-                  <div className="check"></div>
+                  <label className={ val[3] !==2 ? "":"selectedlabel"} htmlFor={i +"_"+page + "_1"}>SLIGHTLY DISAGREE</label>
+                  <div className={ val[3] !==2 ? "check":"selectedcheck"}></div>
                 </div>
                 <br />
                 <br />
@@ -186,8 +187,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
                     checked={questions[page - 1][i][3] == 3}
                     onChange={(e) => onChange(page - 1, i, 3, e)}
                   />
-                  <label htmlFor={i +"_"+ page +"_2"}>NEUTRAL</label>
-                  <div className="check"></div>
+                  <label className={ val[3] !==3 ? "":"selectedlabel"} htmlFor={i +"_"+ page +"_2"}>NEUTRAL</label>
+                  <div className={ val[3] !==3 ? "check":"selectedcheck"}></div>
                 </div>
                 <br /> 
                 <br />
@@ -200,8 +201,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
                     checked={questions[page - 1][i][3] ==4 }
                     onChange={(e) => onChange(page - 1, i, 4, e)}
                   />
-                  <label htmlFor={i +"_"+page + "_3"}>SLIGHTLY AGREE</label>
-                  <div className="check"></div>
+                  <label className={ val[3] !==4 ? "":"selectedlabel"} htmlFor={i +"_"+page + "_3"}>SLIGHTLY AGREE</label>
+                  <div className={ val[3] !==4 ? "check":"selectedcheck"}></div>
                 </div>
                 <br />
                 <br />
@@ -214,8 +215,8 @@ const Personality = ({ personalityscore, isAuthenticated, personalitypred, user,
                     checked={questions[page - 1][i][3] == 5}
                     onChange={(e) => onChange(page - 1, i, 5, e)}
                   />
-                  <label htmlFor={i +"_"+page + "_4"}>AGREE</label>
-                  <div className="check"></div>
+                  <label className={ val[3] !==5 ? "":"selectedlabel"} htmlFor={i +"_"+page + "_4"}>AGREE</label>
+                  <div className={ val[3] !==5 ? "check":"selectedcheck"}></div>
                 </div>
                 <br />
                 <br />

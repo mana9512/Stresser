@@ -17,7 +17,7 @@ import { setAlert } from "../../actions/alert";
 
 var appointmentDate="";
 
-const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert, history}) => {
+const Appointment = ({checkavailability, isAuthenticated, user, setAlert, history}) => {
     if(!isAuthenticated){
         setAlert("You need to autheticate prior to book an appointment","danger")
     }
@@ -98,7 +98,7 @@ const Appointment = ({checkavailability,booked, isAuthenticated, user, setAlert,
                                         style={{color:"white"}}
                                         disableToolbar
                                         variant="inline"
-                                        format="yyyy-MM-dd"
+                                        format="dd-MM-yyyy"
                                         margin="normal"
                                         id="AppointmentDate"
 
@@ -243,13 +243,11 @@ Appointment.propTypes = {
     setAlert: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
     user:PropTypes.object,
-    booked:PropTypes.bool,
   };
   
   const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     user:state.auth.user,
-    booked:state.appointment.booked
   });
   
   export default connect(mapStateToProps, { checkavailability, setAlert })(withRouter(Appointment));

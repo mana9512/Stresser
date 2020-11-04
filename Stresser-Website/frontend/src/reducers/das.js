@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
         success:true
       };
       case SCORE_FAIL:
-        localStorage.removeItem('score',JSON.stringify(action.payload))
+        localStorage.removeItem('score')
         return{
           ...state,
           success:false

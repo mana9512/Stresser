@@ -117,10 +117,21 @@ export const logout = () => (dispatch, getState) => {
   axios
     .post('/api/auth/logout/', null, tokenConfig(getState))
     .then((res) => {
-      dispatch({ type: 'CLEAR_LEADS' });
+      
       dispatch({
         type: LOGOUT_SUCCESS,
       });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    });
+};
+export const chat = () => (dispatch, getState) => {
+  axios
+    .post('http://127.0.0.1:3000')
+    .then((res) => {
+     
+      console.log('hi');
     })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));

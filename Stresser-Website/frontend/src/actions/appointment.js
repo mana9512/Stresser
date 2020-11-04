@@ -40,6 +40,9 @@ export const checkavailability = (user, slot, date, specialist,history) => (disp
         history.replace('/bookedsuccess')
       })
       .catch((err) => {
+        if(err.response.status==400){
+          dispatch(setAlert("You are required to login before booking an appointment!","danger"))
+        }
         console.log(err);
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({

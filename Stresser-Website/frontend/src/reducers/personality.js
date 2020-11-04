@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       };
       case PERSCORE_FAIL:
   
-        localStorage.removeItem('personalitypred',action.payload)
+        localStorage.removeItem('personalitypred')
         return{
             ...state,
             predsuccess:false
